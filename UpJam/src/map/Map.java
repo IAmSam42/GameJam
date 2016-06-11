@@ -49,7 +49,8 @@ public class Map {
 							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE);
 							break;
 						default: 
-							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE);
+							map[x][y] = new TextureError(x*Tile.TILESIZE, y*Tile.TILESIZE);
+							System.err.println("Non Recognised Colour");
 					}
 				}
 			}
