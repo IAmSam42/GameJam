@@ -3,8 +3,8 @@ package engine.entities;
 import engine.GameObject;
 
 public abstract class Entities extends GameObject {
-	public static final int defaultVelocity = 4;
 	private int velX, velY;
+	
 	//1 if character has no buffs, if they are slowed by 50% then .5 etc. 
 	private double velocityBuff;
 	

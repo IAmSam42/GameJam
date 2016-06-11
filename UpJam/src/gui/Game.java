@@ -7,8 +7,11 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import Controller.KeyHandler;
 import map.Map;
+import map.Tile;
 import engine.Handler;
+import engine.entities.Player;
 
 
 public class Game extends Canvas implements Runnable{
@@ -33,16 +36,14 @@ public class Game extends Canvas implements Runnable{
 		
 		handler = new Handler(this);
 		handler.createMap(new Map());
-//		
+	
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
-//		
-//		
-//		
-//		Player player = new Player(32,32, ObjectID.Player, handler);
-//		handler.addPlayer(player);
-//
-//		this.addKeyListener(new KeyInput(player));
+	
+		Player player = new Player(0,0, Tile.TILESIZE);
+		handler.addPlayer(player);
+
+		this.addKeyListener(new KeyHandler(player));
 		this.setFocusable(true);
 
 	}	
@@ -73,7 +74,6 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public void run() {
 		double fpsTimer = System.currentTimeMillis();
-		
 		double nsPerTick = 1000000000.0d/60;
 		double then = System.nanoTime();
 		double unprocessed = 0;
@@ -96,7 +96,6 @@ public class Game extends Canvas implements Runnable{
 			
 			if(canRender){
 				render();
-				
 			}
 			
 			if(System.currentTimeMillis() - fpsTimer > 1000){

@@ -1,43 +1,33 @@
 package Controller;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import engine.entities.Entities;
 import engine.entities.Player;
 
-public class KeyHandler implements KeyListener {
+public class KeyHandler extends KeyAdapter {
 	Player player;
+	
 	public KeyHandler(Player player){
 		this.player = player;
+		System.out.println("IM HERE");
 	}
-	public void keyTyped(KeyEvent e) {
-		int key = e.getKeyChar();
-		switch(key){
-		case KeyEvent.VK_ESCAPE:
-		
-		case KeyEvent.VK_SPACE:
-			
-		}		
-    }
-
     
     public void keyPressed(KeyEvent e) {
-    	int key = e.getKeyChar();
-		switch(key){
-	    case KeyEvent.VK_A:
-			player.setAPressed(true);
-		case KeyEvent.VK_D:
-			player.setDPressed(true);
-		case KeyEvent.VK_W:
-			player.setWPressed(true);
-		case KeyEvent.VK_S:
-			player.setSPressed(true);
-		}
+    	int key = e.getKeyCode();
+	    if(key == KeyEvent.VK_A){player.setAPressed(true);}
+	    if(key == KeyEvent.VK_D){player.setDPressed(true);}
+	    if(key == KeyEvent.VK_W){player.setWPressed(true);}
+	    if(key == KeyEvent.VK_S){player.setSPressed(true);}
+	    System.out.println(key);
     }
 
     
     public void keyReleased(KeyEvent e) {
-        
+    	int key = e.getKeyCode();
+    	if(key == KeyEvent.VK_A){player.setAPressed(false);}
+  	    if(key == KeyEvent.VK_D){player.setDPressed(false);}
+  	    if(key == KeyEvent.VK_W){player.setWPressed(false);}
+  	    if(key == KeyEvent.VK_S){player.setSPressed(false);}
     }
 }
