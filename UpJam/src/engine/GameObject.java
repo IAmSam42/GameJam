@@ -7,6 +7,8 @@ public abstract class GameObject {
 	private int xCoord;
 	private int yCoord;
 	private int size;
+	private boolean isDay = true;
+	
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
@@ -33,14 +35,20 @@ public abstract class GameObject {
 		this.yCoord = yCoord;
 	}
 	
-	public int getSize()
-	{
+	public int getSize(){
 		return size;
 	}
 	
-	public void setSize(int size)
-	{
+	public void setSize(int size){
 		this.size = size;
+	}
+	
+	public boolean isDay(){
+		return isDay;
+	}
+	
+	public void setDay(boolean isDay){
+		this.isDay = isDay;
 	}
 
 }

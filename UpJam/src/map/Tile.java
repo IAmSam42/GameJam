@@ -20,7 +20,4 @@ public abstract class Tile extends GameObject
 	public void setSolid(boolean solid){
 		this.solid = solid;
 	}
-	
-	public void setTexture(String texture){
-	}
 }
