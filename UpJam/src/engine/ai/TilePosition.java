@@ -16,8 +16,28 @@ public class TilePosition
 		return xCoord;
 	}
 	
+	public void setX(int xCoord)
+	{
+		this.xCoord = xCoord;
+	}
+	
 	public int getY()
 	{
 		return yCoord;
+	}
+	
+	public void setY(int yCoord)
+	{
+		this.yCoord = yCoord;
+	}
+	
+	public boolean equals(TilePosition tile)
+	{
+		return (this.xCoord == tile.xCoord) && (this.yCoord == tile.yCoord);
+	}
+	
+	public String toString()
+	{
+		return("(" + xCoord + ", " + yCoord + ")");
 	}
 }
