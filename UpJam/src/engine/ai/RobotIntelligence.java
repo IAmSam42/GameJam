@@ -37,7 +37,7 @@ public class RobotIntelligence {
 		TilePosition nextTile = tileMoves.peek();
 		if(tilePos.equals(nextTile))
 		{
-			tileMoves
+			//tileMoves
 		}
 	}
 	
