@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Floor extends Tile {
 
-	private Image img = new ImageIcon(this.path + "floor.jpg").getImage(); 
+	private Image img = new ImageIcon(this.path + "floor/dayCarpetTile.png").getImage(); 
 	
 	public Floor(int xCoord, int yCoord) {
 		super(xCoord, yCoord);

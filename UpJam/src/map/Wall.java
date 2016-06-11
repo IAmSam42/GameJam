@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Wall extends Tile {
 	
-	private Image img = new ImageIcon(this.path + "wall.jpg").getImage(); 
+	private Image img = new ImageIcon(this.path + "wall/greyWall.png").getImage(); 
 	
 	public Wall(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
