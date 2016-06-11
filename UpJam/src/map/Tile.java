@@ -1,4 +1,6 @@
-package engine.objects;
+package map;
+
+import engine.GameObject;
 
 public abstract class Tile extends GameObject
 {

@@ -1,4 +1,4 @@
-package engine.objects;
+package map;
 
 import java.awt.Graphics;
 

@@ -1,6 +1,5 @@
 package map;
 
-import engine.objects.Tile;
 
 public class Map {
 	
@@ -16,8 +15,21 @@ public class Map {
 		
 	}
 	
+	public Map(String mapWanting){
+		this.width = 0;
+		this.height = 0;
+		
+		map = new Tile[this.width][this.height];
+		
+	}
+	
+	
 	public Tile[][] getMap(){
 		return this.map;
+	}
+	
+	public Tile getTile(int x, int y){
+		return map[x][y];
 	}
 	
 	public int getHeight(){
