@@ -1,6 +1,9 @@
 package engine.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
+import map.Tile;
 
 public class Player extends Entities {
 
@@ -17,7 +20,8 @@ public class Player extends Entities {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
 
 	}
 

@@ -5,22 +5,23 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Wall extends Tile {
+public class TextureError extends Tile {
+
+	private Image img = new ImageIcon(this.path + "error/error.png").getImage(); 
 	
-	private Image img = new ImageIcon(this.path + "wall/greyWall.png").getImage(); 
-	
-	public Wall(int xCoord, int yCoord) {
+	public TextureError(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
-		this.setSolid(true);
-	}
-	
-	@Override
-	public void tick() {
+		this.setSolid(false);
 	}
 	
 
 	@Override
+	public void tick() {
+	}
+	
+	@Override
 	public void render(Graphics g) {
 		g.drawImage(img, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
 	}
+
 }

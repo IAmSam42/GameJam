@@ -11,7 +11,6 @@ public class Handler {
 	private Game game;
 	private Map map;
 	
-	
 	public Handler(Game game) {
 		this.game = game;
 	}
@@ -36,6 +35,7 @@ public class Handler {
 		}
 		
 		//Render objects ontop
+		
 	}
 	
 	

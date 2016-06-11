@@ -1,5 +1,7 @@
 package map;
 
+import gui.Game;
+
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -7,7 +9,8 @@ import javax.swing.ImageIcon;
 
 public class Floor extends Tile {
 
-	private Image img = new ImageIcon(this.path + "floor.jpg").getImage(); 
+	private Image dayImg = new ImageIcon(this.path + "floor/dayCarpet.png").getImage(); 
+	private Image nightImg = new ImageIcon(this.path + "floor/nightCarpet.png").getImage(); 
 	
 	public Floor(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
@@ -21,7 +24,11 @@ public class Floor extends Tile {
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(img, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
+		if(Game.isDay){
+			g.drawImage(dayImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
+		}else{
+			g.drawImage(nightImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
+		}
 	}
 
 }
