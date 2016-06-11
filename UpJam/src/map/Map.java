@@ -15,7 +15,7 @@ public class Map {
 	final int floor = (255 << 24) | (0 << 16) | (0 << 8) | (0);
 	// end
 	
-	private Tile[][] map;
+	private Tile[][] map;//Represents the map in the format (x, y)
 	private int width;
 	private int height;
 	private String fileLocation = "default";

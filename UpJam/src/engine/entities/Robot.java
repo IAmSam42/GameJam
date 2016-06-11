@@ -2,13 +2,31 @@ package engine.entities;
 
 import java.awt.Graphics;
 
-public class Robot extends Entities {
+import engine.ai.RobotIntelligence;
+import map.Map;
 
-	public Robot(int xCoord, int yCoord, int size) {
+public class Robot extends Entities 
+{
+	private RobotIntelligence ai;
+	/**
+	 * Create a robot entity
+	 * 
+	 * @param xCoord The x coordinate of the top left pixel of the robot
+	 * @param yCoord The x coordinate of the top right pixel of the robot 
+	 * @param size The size of the robot entity
+	 */
+	public Robot(int xCoord, int yCoord, int size, Map map) {
 		super(xCoord, yCoord, size);
-		// TODO Auto-generated constructor stub
+		ai = new RobotIntelligence(xCoord, yCoord, map);
 	}
 
+	public void nextPosition()
+	{
+		ai.nextPosition();
+		this.setXCoord(ai.getX());
+		this.setYCoord(ai.getY());
+	}
+	
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
