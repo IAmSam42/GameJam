@@ -15,6 +15,7 @@ public class Floor extends Tile {
 	public Floor(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
 		this.setSolid(false);
+		transparency = .9;
 	}
 	
 
@@ -31,4 +32,5 @@ public class Floor extends Tile {
 		}
 	}
 
+	
 }

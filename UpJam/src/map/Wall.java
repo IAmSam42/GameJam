@@ -12,6 +12,7 @@ public class Wall extends Tile {
 	public Wall(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
 		this.setSolid(true);
+		transparency = 0;
 	}
 	
 	@Override
