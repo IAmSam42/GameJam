@@ -6,23 +6,22 @@ public class Map {
 	private Tile[][] map;
 	private int width;
 	private int height;
+	private String mapToUse = "default";
 	
 	public Map(){
-		this.width = 0;
-		this.height = 0;
-		
-		map = new Tile[this.width][this.height];
-		
+		//map = new Tile[this.width][this.height];
+		genMap();
 	}
 	
 	public Map(String mapWanting){
-		this.width = 0;
-		this.height = 0;
-		
-		map = new Tile[this.width][this.height];
-		
+		this.mapToUse = mapWanting;
+		//map = new Tile[this.width][this.height];
+		genMap();
 	}
 	
+	private void genMap(){
+		
+	}
 	
 	public Tile[][] getMap(){
 		return this.map;

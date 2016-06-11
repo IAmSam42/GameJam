@@ -3,24 +3,20 @@ package gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-//import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-//import mapObjects.Camera;
-//import mapObjects.MapGen;
-//import player.Player;
-//import enums.ObjectID;
-//import framework.Handler;
-//import framework.KeyInput;
+import map.Map;
+import engine.Handler;
+
 
 public class Game extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
-	//private Handler handler;
+	private Handler handler;
 	//private Camera cam;
 	
 	public JFrame frame = new JFrame();
@@ -34,13 +30,14 @@ public class Game extends Canvas implements Runnable{
 		HEIGHT = h;
 		WIDTH = w;
 		
-//		handler = new Handler(this);
+		handler = new Handler(this);
+		handler.createMap(new Map());
 //		
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
 //		
 //		
-//		handler.createMap(new MapGen());
+//		
 //		Player player = new Player(32,32, ObjectID.Player, handler);
 //		handler.addPlayer(player);
 //
@@ -112,7 +109,7 @@ public class Game extends Canvas implements Runnable{
 	 * Tick method
 	 */
 	private void tick() {
-		//handler.tick();
+		handler.tick();
 	}
 
 	/**
@@ -135,7 +132,7 @@ public class Game extends Canvas implements Runnable{
 
 		//g2d.translate(cam.getX(), cam.getY());
 		
-		//handler.render(g);
+		handler.render(g);
 	
 		//g2d.translate(-cam.getX(), -cam.getY());
 		
