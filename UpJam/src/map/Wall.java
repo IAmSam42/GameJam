@@ -12,13 +12,13 @@ public class Wall extends Tile {
 	public Wall(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
 		this.setSolid(true);
-		System.out.println("WALL: " + yCoord);
 	}
 	
 	@Override
 	public void tick() {
 	}
 	
+
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(img, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);

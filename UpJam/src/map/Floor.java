@@ -1,5 +1,7 @@
 package map;
 
+import gui.Game;
+
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -13,7 +15,6 @@ public class Floor extends Tile {
 	public Floor(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
 		this.setSolid(false);
-		System.out.println("FLOOR: " + yCoord);
 	}
 	
 
@@ -23,7 +24,7 @@ public class Floor extends Tile {
 	
 	@Override
 	public void render(Graphics g) {
-		if(isDay()){
+		if(Game.isDay){
 			g.drawImage(dayImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
 		}else{
 			g.drawImage(nightImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
