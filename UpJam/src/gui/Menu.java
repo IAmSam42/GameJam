@@ -24,7 +24,7 @@ public class Menu {
 	private static final int height = 800;
 
 	public static void main(String[] args) {
-		frame = new JFrame("UpJammin'");
+		frame = new JFrame("28 Robots Later");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(width, height);
 		frame.getContentPane().setLayout(null);
@@ -64,7 +64,7 @@ public class Menu {
 
 		// Create play button
 		JButton play = new JButton("Play");
-		play.setBounds(125, 280, 300, 100);
+		play.setBounds(125, 300, 300, 100);
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -78,8 +78,10 @@ public class Menu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Play pressed");
+				int gameWidth = 840;
+				int gameHeight = (width/16)*9;
+				new Window(gameWidth, gameHeight,"28 Robots Later", new Game(gameWidth, gameHeight));
+				frame.dispose();
 			}
 
 		});
@@ -87,7 +89,7 @@ public class Menu {
 
 		// Create quit button
 		JButton quit = new JButton("Quit");
-		quit.setBounds(125, frame.getHeight() / 5 * 3, 300,
+		quit.setBounds(125, 500, 300,
 				100);
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -110,8 +112,8 @@ public class Menu {
 		ImageIcon myImage = new ImageIcon("resources/Sprites/samBIG.png");
 		JLabel sam = new JLabel();
 		sam.setIcon(myImage);
-		sam.setBounds(150, 80, 750,
-				165);
+		sam.setBounds(400, 260, 500,
+				500);
 		panel.add(sam);
 
 		frame.setVisible(true);
