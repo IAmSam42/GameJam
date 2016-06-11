@@ -26,15 +26,16 @@ public class KeyHandler implements KeyListener {
     	int key = e.getKeyChar();
 		switch(key){
 	    case KeyEvent.VK_A:
-			player.setVelX(-(int)player.getVelocityBuff()*Entities.defaultVelocity);
+			player.setAPressed(true);
 		case KeyEvent.VK_D:
-			player.setVelX((int)player.getVelocityBuff()*Entities.defaultVelocity);
+			player.setDPressed(true);
 		case KeyEvent.VK_W:
-			player.setVelY((int)player.getVelocityBuff()*Entities.defaultVelocity);
+			player.setWPressed(true);
 		case KeyEvent.VK_S:
-			player.setVelY(-(int)player.getVelocityBuff()*Entities.defaultVelocity);
+			player.setSPressed(true);
 		}
     }
+
     
     public void keyReleased(KeyEvent e) {
         
