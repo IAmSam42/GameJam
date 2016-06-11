@@ -20,5 +20,13 @@ public class Map {
 		return this.map;
 	}
 	
+	public int getHeight(){
+		return height;
+	}
+	
+	public int getWidth(){
+		return width;
+	}
+	
 	
 }
