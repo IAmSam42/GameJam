@@ -3,7 +3,7 @@ package map;
 
 public class Map {
 	
-	private Tile[][] map;
+	private Tile[][] map;	//Represents the map in the format (x, y)
 	private int width;
 	private int height;
 	
