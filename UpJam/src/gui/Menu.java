@@ -30,7 +30,7 @@ public class Menu {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		
+
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -41,11 +41,11 @@ public class Menu {
 			GraphicsEnvironment ge = GraphicsEnvironment
 					.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(
-					"resources/prstartk.ttf")));
+					"resources/font/prstartk.ttf")));
 		} catch (IOException | FontFormatException e) {
 			// Handle exception
 		}
-		// Create font
+		// Create font for buttons, size for title is different
 		Font fontButton = new Font("Press Start K", Font.PLAIN, 30);
 
 		// Get blue colour
@@ -55,12 +55,12 @@ public class Menu {
 		panel.setLayout(null);
 
 		// Title
-		JLabel label = new JLabel("<html><center>28 Robots Later</center></html>");
-		label.setBounds(150, 80, 750,
-				165);
+		JLabel label = new JLabel(
+				"<html><center>28 Robots Later</center></html>");
+		label.setBounds(150, 80, 750, 165);
 		label.setFont(new Font("Press Start K", Font.PLAIN, 75));
 		label.setForeground(blueColour);
-		panel.add(label, BorderLayout.NORTH);
+		panel.add(label);
 
 		// Create play button
 		JButton play = new JButton("Play");
@@ -79,18 +79,40 @@ public class Menu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int gameWidth = 840;
-				int gameHeight = (width/16)*9;
-				new Window(gameWidth, gameHeight,"28 Robots Later", new Game(gameWidth, gameHeight));
+				int gameHeight = (width / 16) * 9;
+				new Window(gameWidth, gameHeight, "28 Robots Later", new Game(
+						gameWidth, gameHeight));
 				frame.dispose();
 			}
 
 		});
 		panel.add(play);
 
+		// Create credits button
+		JButton credits = new JButton("Credits");
+		credits.setBounds(125, 450, 300, 100);
+		credits.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		credits.setFont(fontButton);
+		credits.setForeground(Color.WHITE);
+		credits.setBackground(blueColour);
+
+		// Add credits listener
+		credits.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				new Credits();
+			}
+		});
+
+		panel.add(credits);
+
 		// Create quit button
 		JButton quit = new JButton("Quit");
-		quit.setBounds(125, 500, 300,
-				100);
+		quit.setBounds(125, 600, 300, 100);
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -107,13 +129,12 @@ public class Menu {
 			}
 		});
 		panel.add(quit);
-		
-		//Image
+
+		// Image
 		ImageIcon myImage = new ImageIcon("resources/Sprites/samBIG.png");
 		JLabel sam = new JLabel();
 		sam.setIcon(myImage);
-		sam.setBounds(400, 260, 500,
-				500);
+		sam.setBounds(400, 260, 500, 500);
 		panel.add(sam);
 
 		frame.setVisible(true);
