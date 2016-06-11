@@ -12,6 +12,7 @@ public class Floor extends Tile {
 	public Floor(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
 		this.setSolid(false);
+		System.out.println("FLOOR: " + yCoord);
 	}
 	
 

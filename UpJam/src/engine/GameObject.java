@@ -13,7 +13,7 @@ public abstract class GameObject {
 	
 	public GameObject(int xCoord, int yCoord, int size){
 		this.xCoord = xCoord;
-		this.xCoord = yCoord;
+		this.yCoord = yCoord;
 		this.size = size;
 	}
 	

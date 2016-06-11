@@ -18,7 +18,7 @@ public class Map {
 	private Tile[][] map;//Represents the map in the format (x, y)
 	private int width;
 	private int height;
-	private String fileLocation = "default";
+	private String fileLocation = "resources/maps/map1.bmp";
 	
 	public Map(){
 		genMap();
@@ -36,16 +36,20 @@ public class Map {
 			this.width = mapimage.getWidth();
 			this.height = mapimage.getHeight();		
 			map = new Tile[this.width][this.height];
-			
-			for(int y=0; y<height; y++){
-				for(int x=0; x<width; x++){
+		
+			for(int y=0; y < this.height; y++){
+				for(int x=0; x < this.width; x++){
 					int rgbVal = mapimage.getRGB(x, y);
-
+					
 					switch(rgbVal) {
 						case floor:
-							map[x][y] = new Floor(x, y);
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE);
+							break;
 						case wall:
-							map[x][y] = new Wall(x, y);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE);
+							break;
+						default: 
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE);
 					}
 				}
 			}
