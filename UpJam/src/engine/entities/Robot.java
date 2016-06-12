@@ -19,19 +19,16 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map) 
 	{
 		super(xCoord, yCoord, size);
-		//ai = new RobotIntelligence(xCoord, yCoord, map);
-		
-	}
-
-	public void nextPosition()
-	{
-		
+		ai = new RobotIntelligence(map, this);		
 	}
 	
 	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
-
+	public void tick() 
+	{
+		for(int i=0; i<4; i++)
+		{
+			ai.nextMove();
+		}
 	}
 
 	@Override

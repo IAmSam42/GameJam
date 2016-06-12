@@ -156,18 +156,4 @@ public class RobotIntelligence
 		robot.setYCoord(robot.getYCoord() - 1);
 		updateTileCoord();
 	}
-	
-	public static void main(String[] args)
-	{
-		Map testMap = new Map();
-		Robot bot = new Robot(32, 32, 32, testMap);
-		RobotIntelligence ai = new RobotIntelligence(testMap, bot);
-		
-		for(int i=0; i<100; i++)
-		{
-			System.out.print("Robot at: (" + bot.getXCoord() + ", " + bot.getYCoord() + ") - ");
-			ai.nextMove();
-		}
-		
-	}
 }
