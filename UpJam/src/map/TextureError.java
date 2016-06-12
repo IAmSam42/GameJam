@@ -11,7 +11,7 @@ public class TextureError extends Tile {
 	
 	public TextureError(int xCoord, int yCoord) {
 		super(xCoord, yCoord);
-		this.setSolid(false);
+		this.setSolid(true);
 	}
 	
 
