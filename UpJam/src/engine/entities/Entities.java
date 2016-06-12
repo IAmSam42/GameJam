@@ -1,9 +1,11 @@
 package engine.entities;
 
+import map.Map;
 import engine.GameObject;
 
 public abstract class Entities extends GameObject {
 	private int velX, velY;
+	protected Map map;
 	
 	//1 if character has no buffs, if they are slowed by 50% then .5 etc. 
 	private double velocityBuff;
@@ -38,6 +40,10 @@ public abstract class Entities extends GameObject {
 	
 	public void setVelocityBuff(double velbuff){
 		this.velocityBuff = velbuff;
+	}
+	
+	public void addMap(Map map) {
+		this.map = map;
 	}
 	
 	

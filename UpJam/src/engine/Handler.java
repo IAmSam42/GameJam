@@ -24,6 +24,7 @@ public class Handler {
 	
 	public void addPlayer(Entities player){
 		players.add(player);
+		player.addMap(map);
 	}
 
 

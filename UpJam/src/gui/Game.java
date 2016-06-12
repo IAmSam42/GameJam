@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
 	
-		Player player = new Player(0,0, Tile.TILESIZE);
+		Player player = new Player(32,32, Tile.TILESIZE);
 		handler.addPlayer(player);
 
 		this.addKeyListener(new KeyHandler(player));

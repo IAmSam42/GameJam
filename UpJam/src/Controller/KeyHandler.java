@@ -10,7 +10,6 @@ public class KeyHandler extends KeyAdapter {
 	
 	public KeyHandler(Player player){
 		this.player = player;
-		System.out.println("IM HERE");
 	}
     
     public void keyPressed(KeyEvent e) {
@@ -19,7 +18,6 @@ public class KeyHandler extends KeyAdapter {
 	    if(key == KeyEvent.VK_D){player.setDPressed(true);}
 	    if(key == KeyEvent.VK_W){player.setWPressed(true);}
 	    if(key == KeyEvent.VK_S){player.setSPressed(true);}
-	    System.out.println(key);
     }
 
     
