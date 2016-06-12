@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import engine.ai.RobotIntelligence;
 import map.Map;
-import misc.Direction;
 
 public class Robot extends Entities 
 {
