@@ -164,7 +164,7 @@ public class Menu {
 		test.setBounds(10, 10, 50, 50);
 		test.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				new MenuBar(840, 100);
+				new MenuBar(1000, 100, true);
 				frame.dispose();
 			}
 		});

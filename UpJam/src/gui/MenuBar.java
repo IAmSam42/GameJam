@@ -15,22 +15,27 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class MenuBar {
-	JPanel p;
+	static JPanel p;
 	JFrame frame;
+	static JLabel trapsLabel;
+	static JLabel timer;
 	static JTextField noTraps;
+	static Color blueColour = new Color(27, 14, 89);
 
-	public MenuBar(int width, int height) {
+	public MenuBar(int width, int height, boolean isDay) {
 		frame = new JFrame("28 Robots Later");
 		frame.setSize(width, height);
 		frame.getContentPane().setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(Color.LIGHT_GRAY);
 		frame.setLocationRelativeTo(null);
 
 		p = new JPanel();
 		p.setSize(width, height / 2);
-		p.setBackground(Color.LIGHT_GRAY);
+		
 		p.setLayout(new GridLayout(1, 4));
 		frame.getContentPane().add(p);
 
@@ -45,45 +50,63 @@ public class MenuBar {
 		}
 		// Create font for buttons, size for title is different
 		Font font = new Font("Press Start K", Font.PLAIN, 16);
-
-		// Get blue colour
-		Color blueColour = new Color(27, 14, 89);
-
+		
 		JButton b = new JButton("Menu");
-		b.setSize(width / 10, 25);
 		b.setFont(font);
-		b.setForeground(Color.WHITE);
 		b.setBackground(blueColour);
-
+		b.setForeground(Color.WHITE);
 		b.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				new MenuPopUp();
+				updateTraps(15);
+				updateTimer(30);
+				nightToDay(false);
 			}
 		});
 		p.add(b);
 
-		JLabel trapsLabel = new JLabel("No. of Traps: ");
+		trapsLabel = new JLabel("No. of Traps: 5", SwingConstants.CENTER);
 		trapsLabel.setFont(new Font("Press Start K", Font.PLAIN, 12));
-		trapsLabel.setSize(width / 5, 25);
-		trapsLabel.setForeground(blueColour);
 		p.add(trapsLabel);
 
-		noTraps = new JTextField();
-		noTraps.setEditable(false);
-		noTraps.setBackground(Color.LIGHT_GRAY);
-		p.add(noTraps);
-
-		JLabel timer = new JLabel("T");
+		timer = new JLabel("T    ", SwingConstants.RIGHT);
 		timer.setFont(new Font("Press Start K", Font.PLAIN, 12));
-		timer.setSize(width / 10, 25);
-		timer.setForeground(blueColour);
 		p.add(timer);
-
+		
+		if(isDay){
+			p.setBackground(Color.LIGHT_GRAY);
+			trapsLabel.setForeground(blueColour);
+			timer.setForeground(blueColour);
+		}else{
+			p.setBackground(Color.DARK_GRAY);
+			trapsLabel.setForeground(Color.WHITE);
+			timer.setForeground(Color.WHITE);
+		}
+		
 		frame.setVisible(true);
 	}
 
 	public static void updateTraps(int no) {
-		noTraps.setText("" + no);
+		trapsLabel.setText("No. of Traps: " + no);
+	}
+	
+	public static void updateTimer(int time){
+		timer.setText("" + time + "    ");
+	}
+	
+	public static void nightToDay(boolean isDay){
+		if(isDay){
+			p.setBackground(Color.LIGHT_GRAY);
+			trapsLabel.setForeground(blueColour);
+			timer.setForeground(blueColour);
+		}else{
+			p.setBackground(Color.DARK_GRAY);
+			trapsLabel.setForeground(Color.WHITE);
+			timer.setForeground(Color.WHITE);
+		}
+		
+		p.repaint();
+		p.revalidate();
 	}
 }
