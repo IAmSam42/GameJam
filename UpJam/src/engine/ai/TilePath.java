@@ -1,36 +1,51 @@
 package engine.ai;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 
 public class TilePath 
 {
-	private ArrayList<TilePosition> path;
+	private Deque<TilePosition> path;
 	
 	public TilePath()
 	{
-		path = new ArrayList<TilePosition>();
+		path = new ArrayDeque<TilePosition>();
 	}
 	
 	public TilePath(TilePosition firstPos)
 	{
-		path = new ArrayList<TilePosition>();
-		path.add(firstPos);
+		path = new ArrayDeque<TilePosition>();
+		path.addFirst(firstPos);
 	}
 	
-	public void add(TilePosition newPos)
+	public void put(TilePosition newPos)
 	{
 		path.add(newPos);
 	}
 	
+	public TilePosition getDestination()
+	{
+		return path.getFirst();
+	}
+	
 	public int length()
 	{
-		return path.size();
+		return path.size() - 1;
 	}
 	
 	public Deque<TilePosition> getStack()
 	{
-		return new ArrayDeque<TilePosition>(path);
+		return path;
+	}
+	
+	public String toString()
+	{
+		String string = "";
+		for(TilePosition pos : path)
+		{
+			string += pos.toString() + " ";
+		}
+		
+		return string;
 	}
 }
