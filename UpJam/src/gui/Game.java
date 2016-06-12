@@ -22,6 +22,7 @@ import engine.entities.Robot;
 public class Game extends Canvas implements Runnable{
 	
 	public static boolean isDay = true;
+	public static boolean paused = false;
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
@@ -143,6 +144,7 @@ public class Game extends Canvas implements Runnable{
 			if(System.currentTimeMillis() - fpsTimer > 1000){
 				fpsTimer += 1000;
 			}
+			while(paused){}
 		}
 	}
 
