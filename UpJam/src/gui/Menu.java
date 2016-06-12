@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -14,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class Menu {
@@ -65,10 +67,6 @@ public class Menu {
 		// Create play button
 		JButton play = new JButton("Play");
 		play.setBounds(125, 300, 300, 100);
-		play.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		play.setFont(fontButton);
 		play.setForeground(Color.WHITE);
 		play.setBackground(blueColour);
@@ -79,7 +77,7 @@ public class Menu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int gameWidth = 840;
-				int gameHeight = (width / 16) * 9;
+				int gameHeight = (gameWidth / 16) * 9;
 				new Window(gameWidth, gameHeight, "28 Robots Later", new Game(
 						gameWidth, gameHeight));
 				frame.dispose();
@@ -137,13 +135,40 @@ public class Menu {
 		studios.setForeground(blueColour);
 		panel.add(studios);
 		
-		// Image
-		ImageIcon myImage = new ImageIcon("resources/Sprites/samBIG.png");
-		JLabel sam = new JLabel();
-		sam.setIcon(myImage);
-		sam.setBounds(400, 260, 500, 500);
-		panel.add(sam);
+		// Images
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(365, 122, 640, 640);
+		layeredPane.setLayout(null);
+		
+		ImageIcon corridor = new ImageIcon("resources/Sprites/corridor.png");
+		JLabel c = new JLabel();
+		c.setIcon(corridor);
+		c.setBounds(1, 1, 631, 635);
+		layeredPane.add(c, new Integer(1));
+		
+		ImageIcon sam = new ImageIcon("resources/Sprites/samNOTSOBIG.png");
+		JLabel s = new JLabel();
+		s.setIcon(sam);
+		s.setBounds(170, 245, 365, 365);
+		layeredPane.add(s, new Integer(2));
+		
+		ImageIcon bob = new ImageIcon("resources/Sprites/bobLITTLEBITBIGGER.png");
+		JLabel b = new JLabel();
+		b.setIcon(bob);
+		b.setBounds(425, 215, 195, 321);
+		layeredPane.add(b, new Integer(2));
+		
+		panel.add(layeredPane);
 
+		JButton test = new JButton("test");
+		test.setBounds(10, 10, 50, 50);
+		test.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				new MenuBar(840, 100);
+			}
+		});
+		panel.add(test);
+		
 		frame.setVisible(true);
 
 	}
