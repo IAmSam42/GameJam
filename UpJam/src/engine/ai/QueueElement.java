@@ -6,9 +6,10 @@ public class QueueElement
 	private TilePath path;
 	private double weight;
 	
-	public QueueElement(TilePosition value, double weight) 
+	public QueueElement(TilePosition value, TilePath path, double weight) 
 	{
 		this.value = value;
+		this.path = path;
 		this.weight = weight;
 	}
 
