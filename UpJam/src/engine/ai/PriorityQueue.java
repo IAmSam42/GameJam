@@ -60,4 +60,9 @@ public class PriorityQueue {
 	{
 		elements.clear();
 	}
+	
+	public boolean isEmpty()
+	{
+		return elements.isEmpty();
+	}
 }
