@@ -5,7 +5,7 @@ import misc.Direction;
 import engine.GameObject;
 
 public abstract class Entities extends GameObject {
-	private int velocity;
+	protected int velocity;
 	protected Map map;
 	protected Direction direction;
 	
