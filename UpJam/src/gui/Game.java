@@ -128,7 +128,7 @@ public class Game extends Canvas implements Runnable{
 		double then = System.nanoTime();
 		double unprocessed = 0;
 		while(running){
-			
+
 			boolean canRender = false;
 			double now = System.nanoTime();
 			unprocessed += (now - then) / nsPerTick;
