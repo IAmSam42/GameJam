@@ -11,11 +11,11 @@ public class PriorityQueue {
 		elements = new ArrayList<QueueElement>();
 	}
 	
-	public boolean put(TilePosition tilePos, TilePath path, double weight)
+	public boolean put(TilePath path, double weight)
 	{
 		for(QueueElement elem : elements)
 		{
-			if(elem.getValue().equals(tilePos))
+			if(elem.getValue().equals(path.getDestination()))
 			{
 				if(elem.getWeight() > weight)
 				{
@@ -26,7 +26,7 @@ public class PriorityQueue {
 			}
 		}
 		
-		QueueElement newElem = new QueueElement(tilePos, weight);
+		QueueElement newElem = new QueueElement(path.getDestination(), path, weight);
 		
 		elements.add(newElem);
 		
@@ -43,17 +43,17 @@ public class PriorityQueue {
 		return true;
 	}
 	
-	public TilePosition pop()
+	public TilePath pop()
 	{
-		TilePosition retVal = elements.get(0).getValue();
+		TilePath retVal = elements.get(0).getPath();
 		elements.remove(0);
 		
 		return retVal;
 	}
 	
-	public TilePosition peak()
+	public TilePath peak()
 	{
-		return elements.get(0).getValue();
+		return elements.get(0).getPath();
 	}
 
 	public void clear()
