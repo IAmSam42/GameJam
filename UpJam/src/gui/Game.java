@@ -14,6 +14,7 @@ import map.Map;
 import map.Tile;
 import engine.Handler;
 import engine.entities.Player;
+import engine.entities.Robot;
 
 
 public class Game extends Canvas implements Runnable{
@@ -37,13 +38,17 @@ public class Game extends Canvas implements Runnable{
 		WIDTH = w;
 		
 		handler = new Handler(this);
-		handler.createMap(new Map());
+		Map map = new Map();
+		handler.createMap(map);
 	
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
 	
 		Player player = new Player(32,32, Tile.TILESIZE);
 		handler.addPlayer(player);
+		
+		handler.addPlayer(new Robot(100, 100, Tile.TILESIZE, map));
+		
 		this.addMouseListener(new MouseListener() {
 			
 			@Override
