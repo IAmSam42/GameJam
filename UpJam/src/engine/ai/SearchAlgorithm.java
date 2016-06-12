@@ -44,12 +44,14 @@ public class SearchAlgorithm
 	
 	private void addPos(TilePosition pos, TilePath pathTo)
 	{
-		if((!map.getTile(pos.getX(), pos.getY()).isSolid()) || expanded.contains(pos))
+		if((!map.getTile(pos.getX(), pos.getY()).isSolid()) && !expanded.contains(pos))
 		{
-			pathTo.put(pos);
-			double weight = getHValue(pos, pathTo);
+			TilePath newPath = new TilePath(pathTo);
+			
+			newPath.put(pos);
+			double weight = getHValue(pos, newPath);
 		
-			positionQueue.put(pathTo, weight);
+			positionQueue.put(newPath, weight);
 			expanded.add(pos);
 		}
 	}
@@ -78,7 +80,6 @@ public class SearchAlgorithm
 			}
 			
 			expand(frontier, frontierPath);
-			search();
 		}
 		
 		expanded.clear();
@@ -103,15 +104,5 @@ public class SearchAlgorithm
 		{
 			addPos(new TilePosition(elem.getX(), elem.getY() + 1), pathTo);
 		}
-	}
-	
-	public static void main(String[] args)
-	{
-		TilePosition t1 = new TilePosition(4, 1);
-		TilePosition t4 = new TilePosition(4, 2);
-		
-		SearchAlgorithm testSearch = new SearchAlgorithm(t1, t4, new Map());
-		
-		System.out.println(testSearch.search());
 	}
 }

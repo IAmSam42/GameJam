@@ -25,7 +25,7 @@ public class TilePath
 	
 	public void put(TilePosition newPos)
 	{
-		path.add(newPos);
+		path.addFirst(newPos);
 	}
 	
 	public TilePosition getDestination()
