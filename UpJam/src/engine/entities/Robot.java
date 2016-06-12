@@ -19,7 +19,7 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map) 
 	{
 		super(xCoord, yCoord, size);
-		ai = new RobotIntelligence(xCoord, yCoord, map);
+		//ai = new RobotIntelligence(xCoord, yCoord, map);
 		
 	}
 
