@@ -2,6 +2,7 @@ package engine.ai;
 
 import java.util.Random;
 
+import engine.entities.Player;
 import engine.entities.Robot;
 import map.Map;
 import map.Tile;
@@ -52,7 +53,10 @@ public class RobotIntelligence
 			
 			if(!map.getTile(xCoord, yCoord).isSolid())
 			{
-				break;
+				if(!(new TilePosition(xCoord, yCoord) == tileGoal))
+				{
+					break;
+				}
 			}
 		}
 		
@@ -77,54 +81,54 @@ public class RobotIntelligence
 		calculatePath();
 	}
 	
+	public void scanPlayer()
+	{
+		
+	}
+	
 	public void nextMove()
 	{
 		if(tilePos.equals(path.getNextTile()))
 		{
 			if((robot.getXCoord() % Tile.TILESIZE) != 0)
 			{
-				System.out.println("Centering Right!");
 				moveRight();
 				return;
 			}
 			else if((robot.getYCoord() % Tile.TILESIZE) != 0)
 			{
-				System.out.println("Centering Up!");
 				moveUp();
 				return;
 			}
-			else if(path.length() == 0)
-			{
-				System.out.println("Reached Goal!");
-				newRandomGoal();
-				return;
-			}
-			else
-			{
-				path.popNextTile();
-				updateTileCoord();
-			}
+			path.popNextTile();
+			updateTileCoord();
+			
 		}
 		
-		if(tilePos.getX() < path.getNextTile().getX())
+		if(path.length() > 0)
 		{
-			System.out.println("Moving Left!");
-			moveLeft();
+			if(tilePos.getX() < path.getNextTile().getX())
+			{
+				moveLeft();
+			}
+			else if(tilePos.getX() > path.getNextTile().getX())
+			{
+				moveRight();
+			}
+			else if(tilePos.getY() < path.getNextTile().getY())
+			{
+				moveDown();
+			}
+			else if(tilePos.getY() > path.getNextTile().getY())
+			{
+				moveUp();
+			}
 		}
-		else if(tilePos.getX() < path.getNextTile().getX())
+		else
 		{
-			System.out.println("Moving Right!");
-			moveRight();
-		}
-		else if(tilePos.getY() < path.getNextTile().getY())
-		{
-			System.out.println("Moving Down!");
-			moveDown();
-		}
-		else if(tilePos.getY() > path.getNextTile().getY())
-		{
-			System.out.println("Moving Up!");
-			moveUp();
+			System.out.println("Reached Goal!");
+			newRandomGoal();
+			calculatePath();
 		}
 	}
 	

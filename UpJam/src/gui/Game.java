@@ -15,6 +15,7 @@ import map.Tile;
 import engine.Handler;
 import engine.entities.Player;
 import engine.entities.Robot;
+import engine.entities.Trap;
 
 
 public class Game extends Canvas implements Runnable{
@@ -44,11 +45,14 @@ public class Game extends Canvas implements Runnable{
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
 	
-		Player player = new Player(32,32, Tile.TILESIZE, map);
-		handler.addPlayer(player);
+
+
+		Player player = new Player(32,32, Tile.TILESIZE, handler, map);
+		//handler.addPlayer(player);
+
 		
 		handler.addPlayer(new Robot(100, 100, Tile.TILESIZE, map));
-		
+
 		this.addMouseListener(new MouseListener() {
 			
 			@Override

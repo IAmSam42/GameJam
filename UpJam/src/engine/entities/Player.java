@@ -1,20 +1,31 @@
 package engine.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.ImageIcon;
 
 import map.Map;
 import map.Tile;
+import engine.Handler;
 
 public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
 	private int playerSpeed = 1;
+
 	private Map map;
 	
-	public Player(int xCoord, int yCoord, int size, Map map) {
+
+
+	private Handler handler;
+	
+	public Player(int xCoord, int yCoord, int size, Handler handler, Map map) {
 		super(xCoord, yCoord, size);
 		this.map = map;
+		this.handler = handler;
+		handler.addPlayer(this);
+
 	}
 
 	@Override
@@ -46,83 +57,22 @@ public class Player extends Entities {
 		setYCoord(getYCoord() + getVelY());
 	}
 	
-	private boolean canMoveTo(String input) {
-		boolean leftSide = this.getBoundsTest(BoundPosition.Left).intersectsLine(this.map.getTile(getXCoord()/Tile.TILESIZE -1, getYCoord()/Tile.TILESIZE).getBoundsTest(BoundPosition.Right));
-		
-		if(input.equals("a") && leftSide && 
-				!(this.map.getTile(((getXCoord()-1)/Tile.TILESIZE), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		/*if(input.equals("d") && rightSide && 
-				!(this.map.getTile(((getXCoord()+Tile.TILESIZE)/Tile.TILESIZE), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(input.equals("s") && bottomSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE, ((getYCoord()-1)/Tile.TILESIZE)).isSolid())){return true;}
-		if(input.equals("w") && topSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE,  ((getYCoord()+Tile.TILESIZE)/Tile.TILESIZE) ).isSolid())){return true;}
-		*/
-		
-		return false;
-	}
-	
-	/*private boolean canMoveTo(String input) {
-		System.out.println("PLAYER IN: " + getXCoord()/Tile.TILESIZE + " | " + getYCoord()/Tile.TILESIZE);
-		boolean leftSide = ((getXCoord()-1)/Tile.TILESIZE) >= 0;
-		boolean bottomSide = ((getYCoord()+1)/Tile.TILESIZE) < this.map.getHeight();
-		
-		boolean rightSide = ((getXCoord()+1)/Tile.TILESIZE)< this.map.getWidth();
-		boolean topSide = ((getYCoord()-1)/Tile.TILESIZE) >=0;
-		
-		if(input.equals("a") && leftSide && 
-				!(this.map.getTile(((getXCoord()-1)/Tile.TILESIZE), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(input.equals("d") && rightSide && 
-				!(this.map.getTile(((getXCoord()+Tile.TILESIZE)/Tile.TILESIZE), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(input.equals("s") && bottomSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE, ((getYCoord()-1)/Tile.TILESIZE)).isSolid())){return true;}
-		if(input.equals("w") && topSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE,  ((getYCoord()+Tile.TILESIZE)/Tile.TILESIZE) ).isSolid())){return true;}
-		return false;
-	}*/
-	
-	/*private boolean canMoveTo(String input) {
-		System.out.println("PLAYER IN: " + getXCoord()/Tile.TILESIZE + " | " + getYCoord()/Tile.TILESIZE);
-		boolean leftSide = ((getXCoord()/Tile.TILESIZE) -1) >= 0;
-		boolean bottomSide = ((getXCoord()/Tile.TILESIZE) +1) < this.map.getHeight();
-		
-		boolean rightSide = ((getYCoord()/Tile.TILESIZE) +1) < this.map.getWidth();
-		boolean topSide = ((getYCoord()/Tile.TILESIZE) -1) >=0;
-		
-		if(input.equals("a") && leftSide && 
-				!(this.map.getTile(((getXCoord()/Tile.TILESIZE) -1), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(input.equals("d") && rightSide && 
-				!(this.map.getTile(((getXCoord()/Tile.TILESIZE) +1), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(input.equals("s") && bottomSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE, ((getYCoord()/Tile.TILESIZE) -1)).isSolid())){return true;}
-		if(input.equals("w") && topSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE,  ((getYCoord()/Tile.TILESIZE) +1) ).isSolid())){return true;}
-		return false;
-	}*/
-	
-	/*private boolean canMoveTo() {
-		System.out.println("PLAYER IN: " + getXCoord()/Tile.TILESIZE + " | " + getYCoord()/Tile.TILESIZE);
-		boolean leftSide = ((getXCoord()/Tile.TILESIZE) -1) >= 0;
-		boolean bottomSide = ((getXCoord()/Tile.TILESIZE) +1) < this.map.getHeight();
-		
-		boolean rightSide = ((getYCoord()/Tile.TILESIZE) +1) < this.map.getWidth();
-		boolean topSide = ((getYCoord()/Tile.TILESIZE) -1) >=0;
-		
-		if(this.aPressed && leftSide && 
-				!(this.map.getTile(((getXCoord()/Tile.TILESIZE) -1), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(this.dPressed && rightSide && 
-				!(this.map.getTile(((getXCoord()/Tile.TILESIZE) +1), getYCoord()/Tile.TILESIZE).isSolid())){return true;}
-		if(this.sPressed&& bottomSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE, ((getYCoord()/Tile.TILESIZE) +1)).isSolid())){return true;}
-		if(this.wPressed&& topSide && 
-				!(this.map.getTile( getXCoord()/Tile.TILESIZE,  ((getYCoord()/Tile.TILESIZE) +1) ).isSolid())){return true;}
-		return false;
-	}*/
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
+		
+		if(wPressed){
+			g.drawImage(new ImageIcon("resources/sprites/samBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(dPressed){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord()+Tile.TILESIZE, this.getYCoord(), -Tile.TILESIZE, Tile.TILESIZE,null);
+		}else{
+			g.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			
+		}
+		
+		//g.setColor(Color.DARK_GRAY);
+		//g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
 
 	}
 	
@@ -140,5 +90,10 @@ public class Player extends Entities {
 	
 	public void setSPressed(boolean n){
 		this.sPressed = n;
+	}
+
+
+	public void dropTrap() {
+		handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
 	}
 }
