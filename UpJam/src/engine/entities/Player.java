@@ -19,7 +19,7 @@ public class Player extends Entities {
 	public void tick() {
 		setVelX(0);
 		setVelY(0);
-		if(aPressed && !dPressed && canMoveTo("a")){
+		if(aPressed && !dPressed /**&& canMoveTo("a")*/){
 			setVelX(-(int)(playerSpeed*getVelocityBuff()));
 		}
 		if(!aPressed && dPressed /*&& canMoveTo("d")*/){
