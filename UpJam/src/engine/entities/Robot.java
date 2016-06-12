@@ -10,6 +10,7 @@ import map.Tile;
 public class Robot extends Entities 
 {
 	private RobotIntelligence ai;
+	private int sight; //How many tiles the robot can see
 	
 	/**
 	 * Create a robot entity
@@ -18,10 +19,21 @@ public class Robot extends Entities
 	 * @param yCoord The x coordinate of the top right pixel of the robot 
 	 * @param size The size of the robot entity
 	 */
-	public Robot(int xCoord, int yCoord, int size, Map map) 
+	public Robot(int xCoord, int yCoord, int size, Map map, Player player) 
 	{
 		super(xCoord, yCoord, size);
-		ai = new RobotIntelligence(map, this);		
+		this.sight = 3;
+		ai = new RobotIntelligence(map, this, player);
+	}
+	
+	public int getSight()
+	{
+		return sight;
+	}
+	
+	public void setSight(int sight)
+	{
+		this.sight = sight;
 	}
 	
 	@Override
