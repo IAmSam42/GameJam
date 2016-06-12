@@ -3,6 +3,7 @@ package engine.ai;
 import java.util.Stack;
 
 import map.Map;
+import map.Tile;
 
 public class RobotIntelligence {
 	
@@ -28,8 +29,8 @@ public class RobotIntelligence {
 	
 	private void updateTileCoord()
 	{
-		this.tilePos.setX(xPixelCoord % 32);
-		this.tilePos.setY(yPixelCoord % 32);
+		this.tilePos.setX(xPixelCoord / Tile.TILESIZE);
+		this.tilePos.setY(yPixelCoord / Tile.TILESIZE);
 	}
 
 	public void nextPosition()
