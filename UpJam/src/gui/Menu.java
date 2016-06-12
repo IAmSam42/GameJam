@@ -26,6 +26,8 @@ public class Menu {
 
 	private static final int width = 1000;
 	private static final int height = 800;
+	
+	Clip clip;
 
 	public Menu(){
 		frame = new JFrame("28 Robots Later");
@@ -82,6 +84,7 @@ public class Menu {
 				int gameHeight = (gameWidth / 16) * 9;
 				new Window(gameWidth, gameHeight, "28 Robots Later", new Game(
 						gameWidth, gameHeight));
+				clip.stop();
 				frame.dispose();
 			}
 
@@ -170,7 +173,7 @@ public class Menu {
 		try {
 			File soundFile = new File("resources/music/MenuMusic.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-			Clip clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();
 			clip.open(audioIn);
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
