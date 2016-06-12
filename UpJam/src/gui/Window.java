@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -16,15 +17,10 @@ public class Window extends JFrame{
 		
 		pack();
 		
-		/*JPanel top = new JPanel();
-		top.setBounds(0, 0, w, 50);
-		top.add(new MenuBar(w, true, this));
-		add(top);*/
-		
-		add(new MenuBar(w, true, this));
+		add(new MenuBar(w, true, this), BorderLayout.NORTH);
 		
 		game.setBounds(0, 50, w, h);
-		add(game);
+		add(game, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);

@@ -75,7 +75,7 @@ public class MenuBar extends JPanel {
 	 * @param no Number of traps
 	 */
 	public static void updateTrapsLabel(int no) {
-		trapsLabel.setText("No. of Traps: " + no);
+		trapsLabel.setText("   No. of Traps: " + no + "     ");
 	}
 	
 	/**
