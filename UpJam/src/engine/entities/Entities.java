@@ -5,7 +5,7 @@ import misc.Direction;
 import engine.GameObject;
 
 public abstract class Entities extends GameObject {
-	private int velX, velY;
+	private int velocity;
 	protected Map map;
 	protected Direction direction;
 	
@@ -15,29 +15,20 @@ public abstract class Entities extends GameObject {
 	public Entities(int xCoord, int yCoord, int size) 
 	{
 		super(xCoord, yCoord, size);
-		velX = 0;
-		velY = 0;
+		velocity = 0;
 		velocityBuff = 1;
 	}
 	
-	public int getVelX(){
-		return velX;
-	}
-	
-	public int getVelY(){
-		return velY;
+	public int getVelocity(){
+		return velocity;
 	}
 	
 	public double getVelocityBuff(){
 		return velocityBuff;
 	}
 	
-	public void setVelX(int velX){
-		this.velX = velX;
-	}
-	
-	public void setVelY(int velY){
-		this.velY = velY;
+	public void setVelocity(int velocity){
+		this.velocity = velocity;
 	}
 	
 	public void setVelocityBuff(double velbuff){
