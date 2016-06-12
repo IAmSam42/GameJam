@@ -25,6 +25,7 @@ public class Robot extends Entities
 	{
 		super(xCoord, yCoord, size);
 		this.sight = 3;
+		this.velocity = 1;
 		ai = new RobotIntelligence(map, this, player);
 	}
 	
@@ -41,7 +42,7 @@ public class Robot extends Entities
 	@Override
 	public void tick() 
 	{
-		for(int i=0; i<1; i++)
+		for(int i=0; i<this.velocity; i++)
 		{
 			ai.nextMove();
 		}
