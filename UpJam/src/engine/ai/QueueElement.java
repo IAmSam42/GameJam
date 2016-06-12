@@ -3,9 +3,10 @@ package engine.ai;
 public class QueueElement
 {
 	private TilePosition value;
-	private int weight;
+	private TilePath path;
+	private double weight;
 	
-	public QueueElement(TilePosition value, int weight) 
+	public QueueElement(TilePosition value, double weight) 
 	{
 		this.value = value;
 		this.weight = weight;
@@ -16,12 +17,22 @@ public class QueueElement
 		return value;
 	}
 	
-	public int getWeight()
+	public TilePath getPath()
+	{
+		return path;
+	}
+	
+	public void setPath(TilePath path)
+	{
+		this.path = path;
+	}
+	
+	public double getWeight()
 	{
 		return weight;
 	}
 	
-	public void setWeight(int weight)
+	public void setWeight(double weight)
 	{
 		this.weight = weight;
 	}

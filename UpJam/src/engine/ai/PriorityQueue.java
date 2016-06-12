@@ -11,7 +11,7 @@ public class PriorityQueue {
 		elements = new ArrayList<QueueElement>();
 	}
 	
-	public void put(TilePosition tilePos, int weight)
+	public boolean put(TilePosition tilePos, TilePath path, double weight)
 	{
 		for(QueueElement elem : elements)
 		{
@@ -20,8 +20,9 @@ public class PriorityQueue {
 				if(elem.getWeight() > weight)
 				{
 					elem.setWeight(weight);
+					elem.setPath(path);
 				}
-				return;
+				return false;
 			}
 		}
 		
@@ -38,6 +39,8 @@ public class PriorityQueue {
 				elements.set(i-1, temp);
 			}
 		}
+		
+		return true;
 	}
 	
 	public TilePosition pop()
