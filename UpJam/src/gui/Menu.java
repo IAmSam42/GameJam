@@ -130,6 +130,13 @@ public class Menu {
 		});
 		panel.add(quit);
 
+		//Uptown Jammin'
+		JLabel studios = new JLabel("By UpJammin' Studios, Version 0.5");
+		studios.setBounds(15, 740, 750, 15);
+		studios.setFont(new Font("Press Start K", Font.PLAIN, 12));
+		studios.setForeground(blueColour);
+		panel.add(studios);
+		
 		// Image
 		ImageIcon myImage = new ImageIcon("resources/Sprites/samBIG.png");
 		JLabel sam = new JLabel();

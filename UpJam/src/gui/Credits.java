@@ -56,7 +56,7 @@ public class Credits {
 		panel.add(title);
 
 		JLabel credit = new JLabel(
-				"<html><center>Font: http://www.zone38.net/<br>Music: www.purple-planet.com<br>Thomas Sammons<br>Sam Holdcroft<br>Helena Bower<br>Sam Durdy<br>Vicci Garner</center></html>");
+				"<html><center>Font: http://www.zone38.net/<br>Music: www.purple-planet.com<br><br>Developers:<br>Thomas Sammons<br>Sam Holdcroft<br>Helena Bower<br>Sam Durdy<br>Vicci Garner</center></html>");
 		credit.setBounds(50, 5, 800, 500);
 		credit.setFont(new Font("Press Start K", Font.PLAIN, 25));
 		credit.setForeground(blueColour);
