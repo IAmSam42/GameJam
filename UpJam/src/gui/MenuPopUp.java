@@ -59,11 +59,28 @@ public class MenuPopUp {
 		title.setForeground(blueColour);
 		panel.add(title);
 		
+		JButton resume = new JButton("<html><center>Resume</center></html>");
+		resume.setFont(fontButton);
+		resume.setForeground(Color.WHITE);
+		resume.setBackground(blueColour);
+		resume.setBounds(75, 125, 250, 75);
+		panel.add(resume);
+		
+		resume.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				//Play game again
+				Game.paused = false;
+				frame.dispose();
+			}
+		});
+		
+		
 		JButton exitMain = new JButton("<html><center>Exit to Main Menu</center><html>");
 		exitMain.setFont(fontButton);
 		exitMain.setForeground(Color.WHITE);
 		exitMain.setBackground(blueColour);
-		exitMain.setBounds(75, 150, 250, 100);
+		exitMain.setBounds(75, 225, 250, 75);
 		panel.add(exitMain);
 		
 		exitMain.addActionListener(new ActionListener() {
@@ -79,7 +96,7 @@ public class MenuPopUp {
 		exitGame.setFont(fontButton);
 		exitGame.setForeground(Color.WHITE);
 		exitGame.setBackground(blueColour);
-		exitGame.setBounds(75, 300, 250, 100);
+		exitGame.setBounds(75, 325, 250, 75);
 		panel.add(exitGame);
 		
 		exitGame.addActionListener(new ActionListener() {
