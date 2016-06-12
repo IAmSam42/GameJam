@@ -14,10 +14,11 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
-	private int scanRate = 200; //How many many ticks a scan happens
+	private int scanRate = 50; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	private LinkedList<Entities> extras;
 	private boolean trapped;
+	private boolean tracking;
 	
 	/**
 	 * Create a robot entity
@@ -29,7 +30,7 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
 	{
 		super(xCoord, yCoord, size);
-		this.sight = 4;
+		this.sight = 10;
 		this.velocity = 1;
 		this.trapped = false;
 		this.extras = extras;
@@ -51,6 +52,16 @@ public class Robot extends Entities
 	public boolean isTrapped()
 	{
 		return trapped;
+	}
+	
+	public boolean isTracking()
+	{
+		return tracking;
+	}
+	
+	public void setTracking(boolean tracking)
+	{
+		this.tracking = tracking;
 	}
 	
 	private int count = 0;
