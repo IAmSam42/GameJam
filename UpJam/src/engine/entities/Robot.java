@@ -13,6 +13,8 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
+	private int scanRate = 10; //How many many ticks a scan happens
+	private int scanValue; //Counter until a scan happens
 	
 	/**
 	 * Create a robot entity
@@ -26,6 +28,9 @@ public class Robot extends Entities
 		super(xCoord, yCoord, size);
 		this.sight = 3;
 		this.velocity = 1;
+		
+		this.scanValue = scanRate;
+		
 		ai = new RobotIntelligence(map, this, player);
 	}
 	
@@ -44,7 +49,17 @@ public class Robot extends Entities
 	{
 		for(int i=0; i<this.velocity; i++)
 		{
+			System.out.println("Move");
+			
 			ai.nextMove();
+		}
+		
+		if(scanValue-- == 0)
+		{
+			System.out.println("Scan");
+			
+			//ai.scanPlayer();
+			scanValue = scanRate;
 		}
 	}
 
