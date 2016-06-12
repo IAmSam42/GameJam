@@ -23,9 +23,11 @@ public class MenuBar extends JPanel {
 	static JLabel trapsLabel;
 	static JTextField noTraps;
 	static Color blueColour = new Color(27, 14, 89);
+	public static boolean isDay;
 
 	public MenuBar(int width, boolean isDay, JFrame game){
 		super();
+		this.isDay = isDay;
 		setSize(width, 64);
 		
 		setLayout(new GridLayout(1, 3));
@@ -50,8 +52,7 @@ public class MenuBar extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				new MenuPopUp(game);
-				updateTrapsLabel(15);
-				nightToDay(false);
+				Game.paused = true;
 			}
 		});
 		add(b);

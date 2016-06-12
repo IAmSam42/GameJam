@@ -22,6 +22,8 @@ import engine.entities.Robot;
 public class Game extends Canvas implements Runnable{
 	
 	public static boolean isDay = true;
+	public static boolean paused = false;
+	public static int timeTillDay = 60*120;
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
@@ -49,9 +51,15 @@ public class Game extends Canvas implements Runnable{
 
 
 		Player player = new Player(32,32, Tile.TILESIZE, handler, map);
-		//handler.addPlayer(player);
 
-		handler.addPlayer(new Robot(100, 100, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(288, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(1000, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(100, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(345, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(809, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		
 
 		this.addMouseListener(new MouseListener() {
 			
@@ -120,7 +128,7 @@ public class Game extends Canvas implements Runnable{
 		double then = System.nanoTime();
 		double unprocessed = 0;
 		while(running){
-			
+
 			boolean canRender = false;
 			double now = System.nanoTime();
 			unprocessed += (now - then) / nsPerTick;
@@ -143,15 +151,26 @@ public class Game extends Canvas implements Runnable{
 			if(System.currentTimeMillis() - fpsTimer > 1000){
 				fpsTimer += 1000;
 			}
+			while(paused){}
 		}
 	}
 
 
+	private int timeCounter = 0;
+	
 	/**
 	 * Tick method
 	 */
 	private void tick() {
 		handler.tick();
+		if(!isDay){
+			timeCounter++;
+			if(timeCounter > timeTillDay){
+				isDay = true;
+				timeCounter = 0;
+			}
+		}
+		
 	}
 
 	/**

@@ -14,10 +14,11 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
-	private int scanRate = 200; //How many many ticks a scan happens
+	private int scanRate = 20; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	private LinkedList<Entities> extras;
 	private boolean trapped;
+	private boolean tracking;
 	
 	/**
 	 * Create a robot entity
@@ -29,7 +30,7 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
 	{
 		super(xCoord, yCoord, size);
-		this.sight = 4;
+		this.sight = 10;
 		this.velocity = 1;
 		this.trapped = false;
 		this.extras = extras;
@@ -53,7 +54,27 @@ public class Robot extends Entities
 		return trapped;
 	}
 	
+	public boolean isTracking()
+	{
+		return tracking;
+	}
+	
+	public void setTracking(boolean tracking)
+	{
+		if(tracking && !this.tracking)
+		{
+			this.velocity = 3;
+		}
+		if(!tracking && this.tracking)
+		{
+			this.velocity = 1;
+		}
+		
+		this.tracking = tracking;
+	}
+	
 	private int count = 0;
+	
 	
 	@Override
 	public void tick() 
@@ -100,10 +121,28 @@ public class Robot extends Entities
 	public void render(Graphics g) {
 		if(isTrapped()){
 			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
-		}else if(this.direction == Direction.UP){
-			g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
-		}else{
-			g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}
+		else if(this.direction == Direction.UP)
+		{
+			if(isTracking())
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobBackSpriteRed.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+			else
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+		}
+		else
+		{
+			if(isTracking())
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobFrontSpriteRed.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+			else
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
 		}
 	}
 
