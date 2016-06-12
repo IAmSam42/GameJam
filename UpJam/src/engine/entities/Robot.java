@@ -4,10 +4,12 @@ import java.awt.Graphics;
 
 import engine.ai.RobotIntelligence;
 import map.Map;
+import misc.Direction;
 
 public class Robot extends Entities 
 {
 	private RobotIntelligence ai;
+	
 	/**
 	 * Create a robot entity
 	 * 
@@ -15,9 +17,11 @@ public class Robot extends Entities
 	 * @param yCoord The x coordinate of the top right pixel of the robot 
 	 * @param size The size of the robot entity
 	 */
-	public Robot(int xCoord, int yCoord, int size, Map map) {
+	public Robot(int xCoord, int yCoord, int size, Map map) 
+	{
 		super(xCoord, yCoord, size);
 		ai = new RobotIntelligence(xCoord, yCoord, map);
+		
 	}
 
 	public void nextPosition()

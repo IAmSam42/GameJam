@@ -1,7 +1,7 @@
 package map;
 
 import engine.GameObject;
-import misc.Directions;
+import misc.Direction;
 
 public abstract class Tile extends GameObject
 {
@@ -32,7 +32,7 @@ public abstract class Tile extends GameObject
 		opacity = op;
 	}
 	
-	public void calculateOpacity(Map map, Directions direction, double inputopacity) {
+	public void calculateOpacity(Map map, Direction direction, double inputopacity) {
 		opacity += inputopacity;
 		if(transparency>.2){
 			switch(direction){
