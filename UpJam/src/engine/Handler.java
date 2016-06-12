@@ -80,8 +80,8 @@ public class Handler {
 						&& map.getTile(x, y).getYCoord() <= (game.getHeight() - cam.getY())) {
 					map.getTile(x, y).render(g);
 					//System.out.println(((1-map.getTile(x, y).getOpacity())*255));
-//					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
-//					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
+					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
+					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
 					map.getTile(x, y).setOpacity(0);
 				}
 			}

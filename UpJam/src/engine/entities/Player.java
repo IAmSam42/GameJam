@@ -56,26 +56,50 @@ public class Player extends Entities {
 		}
 		setXCoord(getXCoord() + velX);
 		setYCoord(getYCoord() + velY);
-		
-		if(wPressed){
-			if(dPressed){
-				direction = Direction.UPRIGHT;
-			}else if (aPressed){
-				direction = Direction.UPLEFT;
-			} else {
-				direction = Direction.UP;
+		if(wPressed|dPressed|sPressed|aPressed){
+			System.out.println("IT WAS TRUEEE");
+			if(wPressed){
+				if(dPressed){
+					direction = Direction.UPRIGHT;
+				}else if (aPressed){
+					direction = Direction.UPLEFT;
+				} else {
+					direction = Direction.UP;
+				}
+			} else if(sPressed){
+				if(dPressed){
+					direction = Direction.DOWNRIGHT;
+				}else if (aPressed){
+					direction = Direction.DOWNLEFT;
+				} else {
+					direction = Direction.DOWN;
+				}	
 			}
-		} else if(sPressed){
-			if(dPressed){
-				direction = Direction.DOWNRIGHT;
-			}else if (aPressed){
-				direction = Direction.DOWNLEFT;
-			} else {
-				direction = Direction.DOWN;
-			}	
+		}
+		int x = getXCoord()/getSize();
+		int y = getYCoord()/getSize();
+		if(map.getTile(x, y).isSolid())
+			y++;
+		switch(direction){
+		case UPLEFT:
+			map.getTile(x, y).calculateOpacityFront(map,getXCoord()/getSize()+1, y+1, 1);
+		case UP:
+			map.getTile(x, y).calculateOpacityFront(map,x, y+1, 1);
+		case UPRIGHT:
+			map.getTile(x, y).calculateOpacityFront(map,x-1, y+1, 1);
+		case RIGHT:
+			map.getTile(x, y).calculateOpacityFront(map,x-1, y, 1);
+		case DOWNRIGHT:
+			map.getTile(x, y).calculateOpacityFront(map,x-1, y-1, 1);
+		case DOWN:
+			map.getTile(x, y).calculateOpacityFront(map,x, y-1, 1);
+		case DOWNLEFT:
+			map.getTile(x, y).calculateOpacityFront(map,x+1, y-1, 1);
+		case LEFT:
+			map.getTile(x, y).calculateOpacityFront(map,x+1, y, 1);
 		}
 		
-		//map.getTile(getXCoord()/getSize(), getYCoord()/getSize()).calculateOpacityForward(map, direction, 1.0);
+		
 	}
 	
 
