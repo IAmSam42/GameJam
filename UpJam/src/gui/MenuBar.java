@@ -17,27 +17,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class MenuBar {
+public class MenuBar extends JPanel {
 	static JPanel p;
-	JFrame frame;
+	static JFrame frame;
 	static JLabel trapsLabel;
-	static JLabel timer;
 	static JTextField noTraps;
 	static Color blueColour = new Color(27, 14, 89);
 
-	public MenuBar(int width, int height, boolean isDay) {
-		frame = new JFrame("28 Robots Later");
-		frame.setSize(width, height);
-		frame.getContentPane().setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBackground(Color.LIGHT_GRAY);
-		frame.setLocationRelativeTo(null);
-
-		p = new JPanel();
-		p.setSize(width, height / 2);
+	public MenuBar(int width, boolean isDay, JFrame game){
+		super();
+		setSize(width, 50);
 		
-		p.setLayout(new GridLayout(1, 4));
-		frame.getContentPane().add(p);
+		setLayout(new GridLayout(1, 3));
 
 		// Import font
 		try {
@@ -58,67 +49,46 @@ public class MenuBar {
 		b.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				new MenuPopUp();
-				updateTraps(15);
-				updateTimer(30);
+				new MenuPopUp(game);
+				updateTrapsLabel(15);
 				nightToDay(false);
 			}
 		});
-		p.add(b);
+		add(b);
 
-		trapsLabel = new JLabel("No. of Traps: 5", SwingConstants.CENTER);
+		trapsLabel = new JLabel("   No. of Traps: 5     ", SwingConstants.RIGHT);
 		trapsLabel.setFont(new Font("Press Start K", Font.PLAIN, 12));
-		p.add(trapsLabel);
-
-		timer = new JLabel("T    ", SwingConstants.RIGHT);
-		timer.setFont(new Font("Press Start K", Font.PLAIN, 12));
-		p.add(timer);
+		add(trapsLabel);
 		
 		if(isDay){
-			p.setBackground(Color.LIGHT_GRAY);
+			setBackground(Color.LIGHT_GRAY);
 			trapsLabel.setForeground(blueColour);
-			timer.setForeground(blueColour);
 		}else{
-			p.setBackground(Color.DARK_GRAY);
+			setBackground(Color.DARK_GRAY);
 			trapsLabel.setForeground(Color.WHITE);
-			timer.setForeground(Color.WHITE);
 		}
 		
-		frame.setVisible(true);
 	}
 
 	/**
 	 * Update the number of traps
 	 * @param no Number of traps
 	 */
-	public static void updateTraps(int no) {
+	public static void updateTrapsLabel(int no) {
 		trapsLabel.setText("No. of Traps: " + no);
 	}
 	
 	/**
-	 * Use to update timer
-	 * @param time
-	 */
-	public static void updateTimer(int time){
-		timer.setText("" + time + "    ");
-	}
-	
-	/**
-	 * Use to change colour scheme between day/night
+	 * Use to change colour scheme between day/night (theoretically)
 	 * @param isDay
 	 */
-	public static void nightToDay(boolean isDay){
+	public void nightToDay(boolean isDay){
 		if(isDay){
-			p.setBackground(Color.LIGHT_GRAY);
+			setBackground(Color.LIGHT_GRAY);
 			trapsLabel.setForeground(blueColour);
-			timer.setForeground(blueColour);
 		}else{
-			p.setBackground(Color.DARK_GRAY);
+			setBackground(Color.DARK_GRAY);
 			trapsLabel.setForeground(Color.WHITE);
-			timer.setForeground(Color.WHITE);
 		}
-		
-		p.repaint();
-		p.revalidate();
 	}
 }

@@ -22,7 +22,7 @@ public class MenuPopUp {
 	private static final int width = 400;
 	private static final int height = 500;
 
-	public MenuPopUp() {
+	public MenuPopUp(JFrame game) {
 		frame = new JFrame("28 Robots Later");
 		frame.setSize(width, height);
 		frame.getContentPane().setLayout(null);
@@ -70,6 +70,7 @@ public class MenuPopUp {
 
 			public void actionPerformed(ActionEvent e) {
 				new Menu();
+				game.dispose();
 				frame.dispose();
 			}
 		});
