@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public static boolean isDay = true;
 	public static boolean paused = false;
-	public static int timeTillDay = 600;
+	public static int timeTillDay = 7200;
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
