@@ -1,6 +1,7 @@
 package engine;
 
 import engine.entities.Entities;
+import engine.entities.Player;
 import gui.Game;
 
 import java.awt.Graphics;
@@ -15,7 +16,8 @@ public class Handler {
 	
 	private Game game;
 	private Map map;
-	private LinkedList<Entities> players = new LinkedList<Entities>();
+	private Player player;
+	private LinkedList<Entities> robots = new LinkedList<Entities>();
 	private LinkedList<Entities> extras = new LinkedList<Entities>();
 	private Camera cam;
 	
@@ -27,11 +29,15 @@ public class Handler {
 		this.map = map;
 	}
 	
-	public void addPlayer(Entities player){
-		players.add(player);
+	public void addPlayer(Player player){
+		this.player = player;
 		player.addMap(map);
 	}
 
+	public void addRobot(Entities Robot){
+		robots.add(Robot);
+	}
+	
 	public void addExtras(Entities trap) {
 		extras.add(trap);		
 	}
@@ -43,11 +49,13 @@ public class Handler {
 		for (int i = 0; i < extras.size(); i++) {
 			extras.get(i).tick();
 		}
+		player.tick();
+		cam.tick(player);
 		
-		//Tick Players
-		for (int i = 0; i < players.size(); i++) {
-			players.get(i).tick();
-			cam.tick(players.get(0));
+		if(!Game.isDay){
+			for (int i = 0; i < robots.size(); i++) {
+				robots.get(i).tick();
+			}
 		}
 	}
 	
@@ -71,8 +79,13 @@ public class Handler {
 		}
 		
 		//Render players and AI
-		for (int i = 0; i < players.size(); i++) {
-			players.get(i).render(g);
+		player.render(g);
+			
+		//Render AI
+		if(!Game.isDay){
+			for (int i = 0; i < robots.size(); i++) {
+				robots.get(i).render(g);
+			}
 		}
 		
 		//Render objects ontop
