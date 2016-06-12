@@ -3,16 +3,19 @@ package engine.entities;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import map.Map;
+import engine.Handler;
 import map.Tile;
 
 public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
 	private int playerSpeed = 1;
+	private Handler handler;
 	
-	public Player(int xCoord, int yCoord, int size) {
+	public Player(int xCoord, int yCoord, int size, Handler handler) {
 		super(xCoord, yCoord, size);
+		this.handler = handler;
+		handler.addPlayer(this);
 	}
 
 	@Override
@@ -130,5 +133,10 @@ public class Player extends Entities {
 	
 	public void setSPressed(boolean n){
 		this.sPressed = n;
+	}
+
+
+	public void dropTrap() {
+		handler.addExtras(new Trap((((int)((getXCoord()+16)/32))*32)+8,(((int)((getYCoord()+16)/32))*32)+8,Tile.TILESIZE));	
 	}
 }

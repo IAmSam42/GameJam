@@ -7,6 +7,7 @@ import engine.entities.Player;
 
 public class KeyHandler extends KeyAdapter {
 	Player player;
+	private boolean held = false;
 	
 	public KeyHandler(Player player){
 		this.player = player;
@@ -18,6 +19,9 @@ public class KeyHandler extends KeyAdapter {
 	    if(key == KeyEvent.VK_D){player.setDPressed(true);}
 	    if(key == KeyEvent.VK_W){player.setWPressed(true);}
 	    if(key == KeyEvent.VK_S){player.setSPressed(true);}
+	    
+	    if(key == KeyEvent.VK_SPACE){
+	    	if(!held){player.dropTrap();} held = true; }
     }
 
     
@@ -27,5 +31,7 @@ public class KeyHandler extends KeyAdapter {
   	    if(key == KeyEvent.VK_D){player.setDPressed(false);}
   	    if(key == KeyEvent.VK_W){player.setWPressed(false);}
   	    if(key == KeyEvent.VK_S){player.setSPressed(false);}
+  	    
+  	    if(key == KeyEvent.VK_SPACE){held = false;}
     }
 }
