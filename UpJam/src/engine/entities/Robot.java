@@ -1,9 +1,11 @@
 package engine.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import engine.ai.RobotIntelligence;
 import map.Map;
+import map.Tile;
 
 public class Robot extends Entities 
 {
@@ -25,7 +27,7 @@ public class Robot extends Entities
 	@Override
 	public void tick() 
 	{
-		for(int i=0; i<4; i++)
+		for(int i=0; i<1; i++)
 		{
 			ai.nextMove();
 		}
@@ -33,7 +35,8 @@ public class Robot extends Entities
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.RED);
+		g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
 
 	}
 
