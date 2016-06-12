@@ -3,8 +3,6 @@ package engine.ai;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.plaf.SliderUI;
-
 import map.Map;
 
 public class SearchAlgorithm 
