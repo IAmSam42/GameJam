@@ -122,7 +122,6 @@ public class RobotIntelligence
 			{
 				if(map.getTile(i, j).isSolid())
 				{
-					System.out.println("Creating a rectangle at: (" + i + ", " + j + ")");
 					Rectangle2D block = new Rectangle(i*Tile.TILESIZE, j*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE); 
 					if(sightLine.intersects(block))
 					{
@@ -175,7 +174,7 @@ public class RobotIntelligence
 		}
 		else
 		{
-			if(scanPlayer())
+			if(!scanPlayer())
 			{
 				robot.setTracking(false);
 				newRandomGoal();
