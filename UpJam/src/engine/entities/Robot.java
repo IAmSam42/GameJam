@@ -59,21 +59,23 @@ public class Robot extends Entities
 		{
 			System.out.println("Move");
 			
-			//ai.nextMove();
+			ai.nextMove();
 		}
 		
 		if(scanValue-- == 0)
 		{
 			System.out.println("Scan");
 			
-			ai.scanPlayer();
+			//ai.scanPlayer();
 			scanValue = scanRate;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if(this.direction == Direction.UP){
+		if(isTrapped()){
+			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(this.direction == Direction.UP){
 			g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
 		}else{
 			g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
