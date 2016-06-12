@@ -1,10 +1,12 @@
 package engine.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-import engine.Handler;
+import javax.swing.ImageIcon;
+
 import map.Tile;
+import engine.Handler;
 
 public class Player extends Entities {
 	
@@ -114,8 +116,19 @@ public class Player extends Entities {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
+		
+		if(wPressed){
+			g.drawImage(new ImageIcon("resources/sprites/samBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(dPressed){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord()+Tile.TILESIZE, this.getYCoord(), -Tile.TILESIZE, Tile.TILESIZE,null);
+		}else{
+			g.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			
+		}
+		
+		//g.setColor(Color.DARK_GRAY);
+		//g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
 
 	}
 	
