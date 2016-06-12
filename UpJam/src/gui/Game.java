@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public static boolean isDay = true;
 	public static boolean paused = false;
+	public static int timeTillDay = 600;
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
@@ -158,7 +159,7 @@ public class Game extends Canvas implements Runnable{
 		handler.tick();
 		if(!isDay){
 			timeCounter++;
-			if(timeCounter > 300){
+			if(timeCounter > timeTillDay){
 				isDay = true;
 				timeCounter = 0;
 			}
