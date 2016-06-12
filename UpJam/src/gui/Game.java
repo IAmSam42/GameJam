@@ -3,6 +3,8 @@ package gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -42,7 +44,38 @@ public class Game extends Canvas implements Runnable{
 	
 		Player player = new Player(32,32, Tile.TILESIZE);
 		handler.addPlayer(player);
-
+		this.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("MOUSE PRESSED AT BLOCK: ("+(int)(e.getX()/32)+", "+(int)(e.getY()/32)+")");
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		this.addKeyListener(new KeyHandler(player));
 		this.setFocusable(true);
 
