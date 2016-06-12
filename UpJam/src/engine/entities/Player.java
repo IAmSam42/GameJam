@@ -7,13 +7,14 @@ import javax.swing.ImageIcon;
 
 import map.Map;
 import map.Tile;
+import misc.Direction;
 import engine.Handler;
 
 public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
 	private int playerSpeed = 1;
-
+	private Direction direction;
 	private Map map;
 	
 
@@ -25,6 +26,7 @@ public class Player extends Entities {
 		this.map = map;
 		this.handler = handler;
 		handler.addPlayer(this);
+		direction = Direction.DOWN;
 
 	}
 
@@ -52,9 +54,26 @@ public class Player extends Entities {
 			velY = -(int)(playerSpeed*getVelocityBuff());
 				
 		}
-		
 		setXCoord(getXCoord() + velX);
 		setYCoord(getYCoord() + velY);
+		
+		if(wPressed){
+			if(dPressed){
+				direction = Direction.UPRIGHT;
+			}else if (aPressed){
+				direction = Direction.UPLEFT;
+			} else {
+				direction = Direction.UP;
+			}
+		} else if(sPressed){
+			if(dPressed){
+				direction = Direction.DOWNRIGHT;
+			}else if (aPressed){
+				direction = Direction.DOWNLEFT;
+			} else {
+				direction = Direction.DOWN;
+			}	
+		}
 	}
 	
 
