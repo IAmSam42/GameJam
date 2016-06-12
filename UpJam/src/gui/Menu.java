@@ -25,7 +25,7 @@ public class Menu {
 	private static final int width = 1000;
 	private static final int height = 800;
 
-	public static void main(String[] args) {
+	public Menu(){
 		frame = new JFrame("28 Robots Later");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(width, height);
@@ -150,12 +150,12 @@ public class Menu {
 		JLabel s = new JLabel();
 		s.setIcon(sam);
 		s.setBounds(170, 245, 365, 365);
-		layeredPane.add(s, new Integer(2));
+		layeredPane.add(s, new Integer(3));
 		
 		ImageIcon bob = new ImageIcon("resources/Sprites/bobLITTLEBITBIGGER.png");
 		JLabel b = new JLabel();
 		b.setIcon(bob);
-		b.setBounds(425, 215, 195, 321);
+		b.setBounds(400, 150, 195, 321);
 		layeredPane.add(b, new Integer(2));
 		
 		panel.add(layeredPane);
@@ -165,12 +165,16 @@ public class Menu {
 		test.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				new MenuBar(840, 100);
+				frame.dispose();
 			}
 		});
 		panel.add(test);
 		
 		frame.setVisible(true);
 
+	}
+	public static void main(String[] args) {
+		new Menu();
 	}
 
 }
