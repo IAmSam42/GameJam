@@ -3,6 +3,8 @@ package engine.ai;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.plaf.SliderUI;
+
 import map.Map;
 
 public class SearchAlgorithm 
@@ -44,12 +46,16 @@ public class SearchAlgorithm
 	
 	private void addPos(TilePosition pos, TilePath pathTo)
 	{
-		if((!map.getTile(pos.getX(), pos.getY()).isSolid()) || expanded.contains(pos))
+		if((!map.getTile(pos.getX(), pos.getY()).isSolid()) && !expanded.contains(pos))
 		{
-			pathTo.put(pos);
-			double weight = getHValue(pos, pathTo);
+			TilePath newPath = new TilePath(pathTo);
+			
+			newPath.put(pos);
+			double weight = getHValue(pos, newPath);
+			
+			System.out.println("path added: " + newPath);
 		
-			positionQueue.put(pathTo, weight);
+			positionQueue.put(newPath, weight);
 			expanded.add(pos);
 		}
 	}
@@ -71,6 +77,9 @@ public class SearchAlgorithm
 			TilePath frontierPath = positionQueue.pop();
 			TilePosition frontier = frontierPath.getDestination();
 			
+			System.out.println("Frontier path: " + frontierPath);
+			System.out.println("Frontier: " + frontier);
+			
 			if(frontier.equals(goal))
 			{
 				expanded.clear();
@@ -78,7 +87,6 @@ public class SearchAlgorithm
 			}
 			
 			expand(frontier, frontierPath);
-			search();
 		}
 		
 		expanded.clear();
@@ -107,8 +115,8 @@ public class SearchAlgorithm
 	
 	public static void main(String[] args)
 	{
-		TilePosition t1 = new TilePosition(4, 1);
-		TilePosition t4 = new TilePosition(4, 2);
+		TilePosition t1 = new TilePosition(3, 4);
+		TilePosition t4 = new TilePosition(3, 6);
 		
 		SearchAlgorithm testSearch = new SearchAlgorithm(t1, t4, new Map());
 		
