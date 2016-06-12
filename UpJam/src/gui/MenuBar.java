@@ -87,14 +87,26 @@ public class MenuBar {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Update the number of traps
+	 * @param no Number of traps
+	 */
 	public static void updateTraps(int no) {
 		trapsLabel.setText("No. of Traps: " + no);
 	}
 	
+	/**
+	 * Use to update timer
+	 * @param time
+	 */
 	public static void updateTimer(int time){
 		timer.setText("" + time + "    ");
 	}
 	
+	/**
+	 * Use to change colour scheme between day/night
+	 * @param isDay
+	 */
 	public static void nightToDay(boolean isDay){
 		if(isDay){
 			p.setBackground(Color.LIGHT_GRAY);
