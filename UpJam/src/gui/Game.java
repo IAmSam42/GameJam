@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable{
 		Player player = new Player(32,32, Tile.TILESIZE, handler, map);
 		//handler.addPlayer(player);
 
-		handler.addPlayer(new Robot(100, 100, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addPlayer(new Robot(288, 224, Tile.TILESIZE, map, player, handler.getExtras()));
 
 		this.addMouseListener(new MouseListener() {
 			
