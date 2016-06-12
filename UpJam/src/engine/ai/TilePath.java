@@ -12,6 +12,11 @@ public class TilePath
 		path = new ArrayDeque<TilePosition>();
 	}
 	
+	public TilePath(TilePath path)
+	{
+		this.path = new ArrayDeque<TilePosition>(path.getStack());
+	}
+	
 	public TilePath(TilePosition firstPos)
 	{
 		path = new ArrayDeque<TilePosition>();
