@@ -1,6 +1,7 @@
 package engine.entities;
 
 import java.awt.Graphics;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
@@ -13,7 +14,7 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
-	private int scanRate = 10; //How many many ticks a scan happens
+	private int scanRate = 200; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	
 	private boolean trapped;
@@ -57,14 +58,14 @@ public class Robot extends Entities
 	{
 		for(int i=0; i<this.velocity; i++)
 		{
-			System.out.println("Move");
+			//System.out.println("Move");
 			
 			ai.nextMove();
 		}
 		
 		if(scanValue-- == 0)
 		{
-			System.out.println("Scan");
+			//System.out.println("Scan");
 			
 			//ai.scanPlayer();
 			scanValue = scanRate;
