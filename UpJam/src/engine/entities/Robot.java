@@ -1,11 +1,13 @@
 package engine.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
-import engine.ai.RobotIntelligence;
+import javax.swing.ImageIcon;
+
 import map.Map;
 import map.Tile;
+import misc.Direction;
+import engine.ai.RobotIntelligence;
 
 public class Robot extends Entities 
 {
@@ -47,9 +49,11 @@ public class Robot extends Entities
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE);
-
+		if(this.direction == Direction.UP){
+			g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else{
+			g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}
 	}
 
 }

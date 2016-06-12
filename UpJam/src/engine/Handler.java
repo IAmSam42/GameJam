@@ -1,6 +1,7 @@
 package engine;
 
 import engine.entities.Entities;
+import engine.entities.Trap;
 import gui.Game;
 
 import java.awt.Graphics;
@@ -13,6 +14,7 @@ public class Handler {
 	private Game game;
 	private Map map;
 	private LinkedList<Entities> players = new LinkedList<Entities>();
+	private LinkedList<Entities> extras = new LinkedList<Entities>();
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -27,9 +29,19 @@ public class Handler {
 		player.addMap(map);
 	}
 
+	public void addExtras(Entities trap) {
+		extras.add(trap);		
+	}
 
 	public void tick(){
 		//No tick needed for Map
+		
+		//Tick Objects - May not be needed
+		for (int i = 0; i < extras.size(); i++) {
+			extras.get(i).tick();
+		}
+		
+		//Tick Players
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).tick();
 		}
@@ -44,6 +56,11 @@ public class Handler {
 			}
 		}
 		
+		//Render Extras behind players 
+		for (int i = 0; i < extras.size(); i++) {
+			extras.get(i).render(g);
+		}
+		
 		//Render players and AI
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).render(g);
@@ -52,6 +69,8 @@ public class Handler {
 		//Render objects ontop
 		
 	}
+
+
 	
 	
 }
