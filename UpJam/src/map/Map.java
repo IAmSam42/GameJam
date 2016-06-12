@@ -18,7 +18,7 @@ public class Map {
 	private Tile[][] map;//Represents the map in the format (x, y)
 	private int width;
 	private int height;
-	private String fileLocation = "resources/maps/testMap.bmp";
+	private String fileLocation = "resources/maps/testMapBig.bmp";
 	
 	public Map(){
 		genMap();

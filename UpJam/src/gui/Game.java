@@ -3,19 +3,20 @@ package gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import Controller.KeyHandler;
+import map.Camera;
 import map.Map;
 import map.Tile;
+import Controller.KeyHandler;
 import engine.Handler;
 import engine.entities.Player;
 import engine.entities.Robot;
-import engine.entities.Trap;
 
 
 public class Game extends Canvas implements Runnable{
@@ -25,7 +26,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Thread thread;
 	private Handler handler;
-	//private Camera cam;
+	private Camera cam;
 	
 	public JFrame frame = new JFrame();
 	public int HEIGHT;
@@ -42,8 +43,8 @@ public class Game extends Canvas implements Runnable{
 		Map map = new Map();
 		handler.createMap(map);
 	
-//		cam = new Camera(0, 0);
-//		handler.addCamera(cam);
+		cam = new Camera(0, 0);
+		handler.addCamera(cam);
 	
 
 
@@ -165,17 +166,17 @@ public class Game extends Canvas implements Runnable{
 		}
 		// Create Graphics to draw
 		Graphics g = bs.getDrawGraphics();
-		//Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D)g;
 				
 		// Colour frame background
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
-		//g2d.translate(cam.getX(), cam.getY());
+		g2d.translate(cam.getX(), cam.getY());
 		
 		handler.render(g);
 	
-		//g2d.translate(-cam.getX(), -cam.getY());
+		g2d.translate(-cam.getX(), -cam.getY());
 		
 		g.dispose();
 		bs.show();

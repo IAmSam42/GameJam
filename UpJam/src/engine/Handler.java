@@ -7,7 +7,10 @@ import gui.Game;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import map.Camera;
 import map.Map;
+import map.Tile;
+
 
 public class Handler {
 	
@@ -15,6 +18,7 @@ public class Handler {
 	private Map map;
 	private LinkedList<Entities> players = new LinkedList<Entities>();
 	private LinkedList<Entities> extras = new LinkedList<Entities>();
+	private Camera cam;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -44,6 +48,7 @@ public class Handler {
 		//Tick Players
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).tick();
+			cam.tick(players.get(0));
 		}
 	}
 	
@@ -52,9 +57,19 @@ public class Handler {
 		//Render the map
 		for (int y = 0; y < map.getHeight(); y++) {
 			for (int x = 0; x < map.getWidth(); x++) {
-				map.getTile(x, y).render(g);
+				if (map.getTile(x, y).getXCoord() >= (0 - cam.getX() - Tile.TILESIZE)
+						&& map.getTile(x, y).getYCoord() >= (0 - cam.getY() - Tile.TILESIZE)
+						&& map.getTile(x, y).getXCoord() <= (game.getWidth() - cam.getX())
+						&& map.getTile(x, y).getYCoord() <= (game.getHeight() - cam.getY())) {
+					map.getTile(x, y).render(g);
+					}
 			}
 		}
+		
+		
+		
+		
+		
 		
 		//Render Extras behind players 
 		for (int i = 0; i < extras.size(); i++) {
@@ -72,6 +87,10 @@ public class Handler {
 
 	public LinkedList<Entities> getExtras() {
 		return this.extras;
+	}
+
+	public void addCamera(Camera cam) {
+		this.cam = cam;		
 	}
 
 
