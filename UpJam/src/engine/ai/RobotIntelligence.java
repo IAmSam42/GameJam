@@ -2,28 +2,26 @@ package engine.ai;
 
 import java.util.Random;
 
+import engine.entities.Robot;
 import map.Map;
 import map.Tile;
+import misc.Direction;
 
 public class RobotIntelligence
 {
-	
-	private int xPixelCoord;
-	private int yPixelCoord;
-	
 	private TilePosition tilePos;
 	private TilePosition tileGoal;
 	
 	private Random generator;
 	
 	private Map map;
-	private TilePath tileMoves;
+	private TilePath path;
+	private Robot robot;
 	
-	public RobotIntelligence(int xStart, int yStart, Map map) 
+	public RobotIntelligence(Map map, Robot robot) 
 	{
-		xPixelCoord = xStart;
-		yPixelCoord = yStart;
 		this.map = map;
+		this.robot = robot;
 		
 		tilePos = new TilePosition(0, 0);
 		tileGoal = new TilePosition(0, 0);
@@ -33,14 +31,13 @@ public class RobotIntelligence
 		updateTileCoord();
 		newRandomGoal();
 		
-		SearchAlgorithm pathing = new SearchAlgorithm(tilePos, tileGoal, map);
-		tileMoves = pathing.search();
+		calculatePath();
 	}
 	
 	private void updateTileCoord()
 	{
-		this.tilePos.setX(xPixelCoord / Tile.TILESIZE);
-		this.tilePos.setY(yPixelCoord / Tile.TILESIZE);
+		this.tilePos.setX(robot.getXCoord() / Tile.TILESIZE);
+		this.tilePos.setY(robot.getYCoord() / Tile.TILESIZE);
 	}
 	
 	private void newRandomGoal()
@@ -61,5 +58,116 @@ public class RobotIntelligence
 		
 		this.tileGoal.setX(xCoord);
 		this.tileGoal.setY(yCoord);
+
+		System.out.println("Goal is: " + tileGoal);
+	}
+	
+	private void calculatePath()
+	{
+		SearchAlgorithm pathing = new SearchAlgorithm(tilePos, tileGoal, map);
+		path = pathing.search();
+	}
+	
+	public void setGoal(int xCoord, int yCoord)
+	{
+		this.tileGoal.setX(xCoord);
+		this.tileGoal.setY(yCoord);
+		
+		
+		calculatePath();
+	}
+	
+	public void nextMove()
+	{
+		if(tilePos.equals(path.getNextTile()))
+		{
+			if((robot.getXCoord() % Tile.TILESIZE) != 0)
+			{
+				System.out.println("Centering Right!");
+				moveRight();
+				return;
+			}
+			else if((robot.getYCoord() % Tile.TILESIZE) != 0)
+			{
+				System.out.println("Centering Up!");
+				moveUp();
+				return;
+			}
+			else if(path.length() == 0)
+			{
+				System.out.println("Reached Goal!");
+				newRandomGoal();
+				return;
+			}
+			else
+			{
+				path.popNextTile();
+				updateTileCoord();
+			}
+		}
+		
+		if(tilePos.getX() < path.getNextTile().getX())
+		{
+			System.out.println("Moving Left!");
+			moveLeft();
+		}
+		else if(tilePos.getX() < path.getNextTile().getX())
+		{
+			System.out.println("Moving Right!");
+			moveRight();
+		}
+		else if(tilePos.getY() < path.getNextTile().getY())
+		{
+			System.out.println("Moving Down!");
+			moveDown();
+		}
+		else if(tilePos.getY() > path.getNextTile().getY())
+		{
+			System.out.println("Moving Up!");
+			moveUp();
+		}
+	}
+	
+	
+	public void moveLeft()
+	{
+		robot.setDirection(Direction.DOWN);
+		robot.setXCoord(robot.getXCoord() + 1);
+		updateTileCoord();
+	}
+	
+	public void moveRight()
+	{
+		robot.setDirection(Direction.DOWN);
+		robot.setXCoord(robot.getXCoord() - 1);
+		updateTileCoord();
+	}
+	
+	public void moveDown()
+	{
+		robot.setDirection(Direction.DOWN);
+		robot.setYCoord(robot.getYCoord() + 1);
+		updateTileCoord();
+	}
+	
+	public void moveUp()
+	{
+		robot.setDirection(Direction.UP);
+		robot.setYCoord(robot.getYCoord() - 1);
+		updateTileCoord();
+	}
+	
+	public static void main(String[] args)
+	{
+		Map testMap = new Map();
+		Robot bot = new Robot(32, 32, 32, testMap);
+		RobotIntelligence ai = new RobotIntelligence(testMap, bot);
+		
+		for(int i=0; i<100; i++)
+		{
+			System.out.print("Robot at: (" + bot.getXCoord() + ", " + bot.getYCoord() + ") - ");
+			ai.nextMove();
+		}
+		
 	}
 }
