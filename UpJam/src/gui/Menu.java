@@ -111,10 +111,6 @@ public class Menu {
 		// Create quit button
 		JButton quit = new JButton("Quit");
 		quit.setBounds(125, 600, 300, 100);
-		quit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		quit.setFont(fontButton);
 		quit.setForeground(Color.WHITE);
 		quit.setBackground(blueColour);
@@ -129,7 +125,7 @@ public class Menu {
 		panel.add(quit);
 
 		//Uptown Jammin'
-		JLabel studios = new JLabel("By UpJammin' Studios, Version 0.5");
+		JLabel studios = new JLabel("By UpJammin' Studios, Version 0.6.5");
 		studios.setBounds(15, 740, 750, 15);
 		studios.setFont(new Font("Press Start K", Font.PLAIN, 12));
 		studios.setForeground(blueColour);
@@ -159,16 +155,6 @@ public class Menu {
 		layeredPane.add(b, new Integer(2));
 		
 		panel.add(layeredPane);
-
-		JButton test = new JButton("test");
-		test.setBounds(10, 10, 50, 50);
-		test.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				new MenuBar(1000, 100, true);
-				frame.dispose();
-			}
-		});
-		panel.add(test);
 		
 		frame.setVisible(true);
 
