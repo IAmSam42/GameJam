@@ -70,6 +70,10 @@ public class Handler {
 		
 	}
 
+	public LinkedList<Entities> getExtras() {
+		return this.extras;
+	}
+
 
 	
 	
