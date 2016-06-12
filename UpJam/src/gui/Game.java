@@ -147,11 +147,21 @@ public class Game extends Canvas implements Runnable{
 	}
 
 
+	private int timeCounter = 0;
+	
 	/**
 	 * Tick method
 	 */
 	private void tick() {
 		handler.tick();
+		if(!isDay){
+			timeCounter++;
+			if(timeCounter > 300){
+				isDay = true;
+				timeCounter = 0;
+			}
+		}
+		
 	}
 
 	/**
