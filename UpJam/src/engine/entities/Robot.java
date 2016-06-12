@@ -61,6 +61,14 @@ public class Robot extends Entities
 	
 	public void setTracking(boolean tracking)
 	{
+		if(tracking && !this.tracking)
+		{
+			System.out.println("Player Spotted!");
+		}
+		if(!tracking && this.tracking)
+		{
+			System.out.println("Player Lost!");
+		}
 		this.tracking = tracking;
 	}
 	
@@ -86,7 +94,7 @@ public class Robot extends Entities
 		{
 			for(int i=0; i<this.velocity; i++)
 			{
-				ai.nextMove();
+				//ai.nextMove();
 			}
 			
 			if(scanValue-- == 0)
@@ -111,10 +119,28 @@ public class Robot extends Entities
 	public void render(Graphics g) {
 		if(isTrapped()){
 			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
-		}else if(this.direction == Direction.UP){
-			g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
-		}else{
-			g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}
+		else if(this.direction == Direction.UP)
+		{
+			if(isTracking())
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobBackSpriteRed.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+			else
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+		}
+		else
+		{
+			if(isTracking())
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobFrontSpriteRed.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
+			else
+			{
+				g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			}
 		}
 	}
 

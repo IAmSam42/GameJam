@@ -48,6 +48,7 @@ public class RobotIntelligence
 	
 	private void newRandomGoal()
 	{
+		System.out.println("Generating Random Goal!");
 		int xCoord;
 		int yCoord; 
 		
@@ -71,7 +72,6 @@ public class RobotIntelligence
 	
 	private void calculatePath()
 	{
-
 		SearchAlgorithm pathing = new SearchAlgorithm(tilePos, tileGoal, map);
 		path = pathing.search();
 	}
@@ -84,7 +84,7 @@ public class RobotIntelligence
 		calculatePath();
 	}
 	
-	public void scanPlayer()
+	public boolean scanPlayer()
 	{
 		if(detectPixel(player.getXCoord() + (player.getSize()/2), 
 				player.getYCoord() + (player.getSize()/2)))
@@ -92,8 +92,13 @@ public class RobotIntelligence
 			int playerXTile = (player.getXCoord()+(player.getSize()/2))/32;
 			int playerYTile = (player.getYCoord()+(player.getSize()/2))/32;
 			
+			if(!(tileGoal.equals(new TilePosition(playerXTile, playerYTile))))
 			setGoal(playerXTile, playerYTile);
+			robot.setTracking(true);
+			return true;
 		}
+		
+		return false;
 	}
 	
 	public boolean detectPixel(int xCoord, int yCoord)
@@ -169,8 +174,12 @@ public class RobotIntelligence
 		}
 		else
 		{
-			newRandomGoal();
-			calculatePath();
+			if(scanPlayer())
+			{
+				robot.setTracking(false);
+				newRandomGoal();
+				calculatePath();
+			}
 		}
 	}	
 	
