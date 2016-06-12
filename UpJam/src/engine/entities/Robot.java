@@ -94,7 +94,7 @@ public class Robot extends Entities
 		{
 			for(int i=0; i<this.velocity; i++)
 			{
-				//ai.nextMove();
+				ai.nextMove();
 			}
 			
 			if(scanValue-- == 0)
