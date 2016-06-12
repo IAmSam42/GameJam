@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Credits {
 	private static JFrame frame;
@@ -47,18 +48,18 @@ public class Credits {
 		// Get blue colour
 		Color blueColour = new Color(27, 14, 89);
 
-		JLabel title = new JLabel("Credits");
-		title.setBounds(150, 25, 550, 100);
+		JLabel title = new JLabel("Credits", SwingConstants.CENTER);
+		title.setSize(width, 100);
 		title.setFont(new Font("Press Start K", Font.PLAIN, 75));
 		title.setForeground(blueColour);
-		panel.add(title);
+		panel.add(title, BorderLayout.NORTH);
 
 		JLabel credit = new JLabel(
-				"<html><center>Font: http://www.zone38.net/<br>Music: www.purple-planet.com<br><br>Developers:<br>Thomas Sammons<br>Sam Holdcroft<br>Helena Bower<br>Sam Durdy<br>Vicci Garner</center></html>");
-		credit.setBounds(50, 5, 800, 500);
+				"<html><center>Font: http://www.zone38.net/<br><br>Music: Sam Durdy, www.purple-planet.com<br><br>Developers:<br>Thomas Sammons<br>Sam Holdcroft<br>Helena Bower<br>Sam Durdy<br>Vicci Garner</center></html>");
+		credit.setSize(width, 500);
 		credit.setFont(new Font("Press Start K", Font.PLAIN, 25));
 		credit.setForeground(blueColour);
-		panel.add(credit);
+		panel.add(credit, BorderLayout.CENTER);
 		frame.setVisible(true);
 	}
 

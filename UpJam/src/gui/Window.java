@@ -19,7 +19,7 @@ public class Window extends JFrame{
 		
 		add(new MenuBar(w, true, this), BorderLayout.NORTH);
 		
-		game.setBounds(0, 50, w, h);
+		game.setBounds(0, 64, w, h);
 		add(game, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
