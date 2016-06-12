@@ -33,6 +33,19 @@ public class TilePath
 		return path.getFirst();
 	}
 	
+	
+	public TilePosition getNextTile()
+	{
+		return path.getLast();
+	}
+	
+	public TilePosition popNextTile()
+	{
+		TilePosition temp = getNextTile();
+		path.removeLast();
+		return temp;
+	}
+	
 	public int length()
 	{
 		return path.size() - 1;

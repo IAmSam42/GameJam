@@ -1,11 +1,13 @@
 package engine.entities;
 
 import map.Map;
+import misc.Direction;
 import engine.GameObject;
 
 public abstract class Entities extends GameObject {
 	private int velX, velY;
 	protected Map map;
+	protected Direction direction;
 	
 	//1 if character has no buffs, if they are slowed by 50% then .5 etc. 
 	private double velocityBuff;
@@ -44,6 +46,16 @@ public abstract class Entities extends GameObject {
 	
 	public void addMap(Map map) {
 		this.map = map;
+	}
+	
+	public void setDirection(Direction direction)
+	{
+		this.direction = direction;
+	}
+	
+	public Direction getDirection()
+	{
+		return direction;
 	}
 	
 	
