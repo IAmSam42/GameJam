@@ -1,5 +1,8 @@
 package engine.ai;
 
+import java.awt.Rectangle;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 import engine.entities.Player;
@@ -18,11 +21,13 @@ public class RobotIntelligence
 	private Map map;
 	private TilePath path;
 	private Robot robot;
+	private Player player;
 	
-	public RobotIntelligence(Map map, Robot robot) 
+	public RobotIntelligence(Map map, Robot robot, Player player) 
 	{
 		this.map = map;
 		this.robot = robot;
+		this.player = player;
 		
 		tilePos = new TilePosition(0, 0);
 		tileGoal = new TilePosition(0, 0);
@@ -62,8 +67,6 @@ public class RobotIntelligence
 		
 		this.tileGoal.setX(xCoord);
 		this.tileGoal.setY(yCoord);
-
-		System.out.println("Goal is: " + tileGoal);
 	}
 	
 	private void calculatePath()
@@ -83,7 +86,50 @@ public class RobotIntelligence
 	
 	public void scanPlayer()
 	{
+		if(detectPixel(player.getXCoord(), player.getYCoord())
+		|| detectPixel(player.getXCoord() + player.getSize(), player.getYCoord())
+		|| detectPixel(player.getXCoord(), player.getYCoord() + player.getSize())
+		|| detectPixel(player.getXCoord() + player.getSize(), player.getYCoord() + player.getSize())
+		)
+		{
+			int playerXTile = player.getXCoord()/32;
+			int playerYTile = player.getYCoord()/32;
+			
+			setGoal(playerXTile, playerYTile);
+		}
+	}
+	
+	public boolean detectPixel(int xCoord, int yCoord)
+	{
+		int xCenter = robot.getXCoord() + robot.getSize();
+		int yCenter = robot.getYCoord() + robot.getSize();
 		
+		int distSqr = ((xCenter-xCoord) * (xCenter-xCoord)) + ((yCenter-yCoord)*(yCenter-yCoord));
+		double dist = Math.sqrt((double)distSqr);
+		
+		if(dist> (robot.getSight()*Tile.TILESIZE))
+		{
+			return false;
+		}
+		
+		Line2D sightLine = new Line2D.Double(xCenter, yCenter, xCoord, yCoord);
+		
+		for(int i=0; i<map.getWidth(); i++)
+		{
+			for(int j=0; j<map.getHeight(); j++)
+			{
+				if(map.getTile(i, j).isSolid())
+				{
+					Rectangle2D block = new Rectangle(i*Tile.TILESIZE, j*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE); 
+					if(!sightLine.intersects(block))
+					{
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	public void nextMove()
@@ -126,12 +172,10 @@ public class RobotIntelligence
 		}
 		else
 		{
-			System.out.println("Reached Goal!");
 			newRandomGoal();
 			calculatePath();
 		}
-	}
-	
+	}	
 	
 	public void moveLeft()
 	{

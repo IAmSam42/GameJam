@@ -43,8 +43,6 @@ public class Credits {
 		} catch (IOException | FontFormatException e) {
 			// Handle exception
 		}
-		// Create font
-		// Font fontButton = new Font("Press Start K", Font.PLAIN, 30);
 
 		// Get blue colour
 		Color blueColour = new Color(27, 14, 89);
