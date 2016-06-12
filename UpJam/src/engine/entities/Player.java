@@ -10,26 +10,36 @@ public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
 	private int playerSpeed = 1;
+	private Map map;
 	
-	public Player(int xCoord, int yCoord, int size) {
+	public Player(int xCoord, int yCoord, int size, Map map) {
 		super(xCoord, yCoord, size);
+		this.map = map;
 	}
 
 	@Override
 	public void tick() {
 		setVelX(0);
 		setVelY(0);
-		if(aPressed && !dPressed /**&& canMoveTo("a")*/){
+		int size = getSize();
+		if(aPressed && !dPressed
+				&& !map.getTile((int)((getXCoord()-playerSpeed+7)/size),(int)((getYCoord()+(size/2))/size)).isSolid()
+				&& !map.getTile((int)((getXCoord()-playerSpeed+7)/size),(int)((getYCoord()+size)/size)).isSolid()){
 			setVelX(-(int)(playerSpeed*getVelocityBuff()));
 		}
-		if(!aPressed && dPressed /*&& canMoveTo("d")*/){
+		if(!aPressed && dPressed
+				&& !map.getTile((int)((getXCoord()+playerSpeed+(size-7))/size),(int)((getYCoord()+(size/2))/size)).isSolid()
+				&& !map.getTile((int)((getXCoord()+playerSpeed+(size-7))/size),(int)((getYCoord()+size)/size)).isSolid()){
 			setVelX((int)(playerSpeed*getVelocityBuff()));
 		}
-		if(!wPressed && sPressed /*&& canMoveTo("s")*/){
+		if(!wPressed && sPressed 
+				&& !map.getTile((int)((getXCoord()+(size/2))/size),(int)((getYCoord()+playerSpeed+size)/size)).isSolid()){
 			setVelY((int)(playerSpeed*getVelocityBuff()));
 		}
-		if(wPressed && !sPressed /*&& canMoveTo("w")*/){
-			setVelY(-(int)(playerSpeed*getVelocityBuff()));
+		if(wPressed && !sPressed && !map.getTile((int)((getXCoord()+(size/2))/size), (int)((getYCoord()-playerSpeed+size/2)/size)).isSolid()){ 
+
+					setVelY(-(int)(playerSpeed*getVelocityBuff()));
+				
 		}
 		
 		setXCoord(getXCoord() + getVelX());

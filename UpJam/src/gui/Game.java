@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable{
 //		cam = new Camera(0, 0);
 //		handler.addCamera(cam);
 	
-		Player player = new Player(32,32, Tile.TILESIZE);
+		Player player = new Player(32,32, Tile.TILESIZE, map);
 		handler.addPlayer(player);
 		
 		handler.addPlayer(new Robot(100, 100, Tile.TILESIZE, map));
