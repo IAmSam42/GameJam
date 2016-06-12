@@ -4,7 +4,9 @@ import engine.entities.Entities;
 import engine.entities.Trap;
 import gui.Game;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import map.Camera;
@@ -19,6 +21,7 @@ public class Handler {
 	private LinkedList<Entities> players = new LinkedList<Entities>();
 	private LinkedList<Entities> extras = new LinkedList<Entities>();
 	private Camera cam;
+	private Rectangle[][] fog;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -26,6 +29,13 @@ public class Handler {
 	
 	public void createMap(Map map){
 		this.map = map;
+		fog = new Rectangle[map.getWidth()][map.getHeight()];
+//		for(int y = 0; y<map.getHeight();y++){
+//			for(int x = 0; x<map.getWidth();x++){
+//				fog[x][y] = new Rectangle(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
+//			}
+//		}
+		
 	}
 	
 	public void addPlayer(Entities player){
@@ -62,7 +72,11 @@ public class Handler {
 						&& map.getTile(x, y).getXCoord() <= (game.getWidth() - cam.getX())
 						&& map.getTile(x, y).getYCoord() <= (game.getHeight() - cam.getY())) {
 					map.getTile(x, y).render(g);
-					}
+					//System.out.println(((1-map.getTile(x, y).getOpacity())*255));
+					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
+					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
+					map.getTile(x, y).setOpacity(0);
+				}
 			}
 		}
 		
@@ -75,6 +89,8 @@ public class Handler {
 		for (int i = 0; i < extras.size(); i++) {
 			extras.get(i).render(g);
 		}
+		
+	
 		
 		//Render players and AI
 		for (int i = 0; i < players.size(); i++) {

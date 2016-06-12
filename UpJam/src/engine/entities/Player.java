@@ -74,6 +74,8 @@ public class Player extends Entities {
 				direction = Direction.DOWN;
 			}	
 		}
+		
+		//map.getTile(getXCoord()/getSize(), getYCoord()/getSize()).calculateOpacityForward(map, direction, 1.0);
 	}
 	
 
