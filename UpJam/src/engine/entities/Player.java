@@ -13,7 +13,7 @@ import engine.Handler;
 public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
-	private int playerSpeed = 1;
+	private int playerSpeed = 2;
 	private Direction direction;
 	private Map map;
 	
