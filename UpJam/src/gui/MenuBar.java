@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,14 +23,13 @@ public class MenuBar {
 
 	public MenuBar(int width, int height) {
 		frame = new JFrame("28 Robots Later");
-		frame.setSize(width, height+100);
+		frame.setSize(width, height);
 		frame.getContentPane().setLayout(null);
 		frame.setBackground(Color.LIGHT_GRAY);
 		frame.setLocationRelativeTo(null);
 
-		
 		p = new JPanel();
-		p.setSize(width, height);
+		p.setSize(width, height / 2);
 		p.setBackground(Color.LIGHT_GRAY);
 		p.setLayout(new GridLayout(1, 4));
 		frame.getContentPane().add(p);
@@ -53,23 +54,36 @@ public class MenuBar {
 		b.setFont(font);
 		b.setForeground(Color.WHITE);
 		b.setBackground(blueColour);
+
+		b.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				new MenuPopUp();
+			}
+		});
 		p.add(b);
-		
+
 		JLabel trapsLabel = new JLabel("No. of Traps: ");
 		trapsLabel.setFont(new Font("Press Start K", Font.PLAIN, 12));
 		trapsLabel.setSize(width / 5, 25);
 		trapsLabel.setForeground(blueColour);
 		p.add(trapsLabel);
-		
+
 		noTraps = new JTextField();
 		noTraps.setEditable(false);
 		noTraps.setBackground(Color.LIGHT_GRAY);
 		p.add(noTraps);
-		
+
+		JLabel timer = new JLabel("T");
+		timer.setFont(new Font("Press Start K", Font.PLAIN, 12));
+		timer.setSize(width / 10, 25);
+		timer.setForeground(blueColour);
+		p.add(timer);
+
 		frame.setVisible(true);
 	}
-	
-	public static void updateTraps(int no){
+
+	public static void updateTraps(int no) {
 		noTraps.setText("" + no);
 	}
 }
