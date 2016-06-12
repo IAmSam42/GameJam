@@ -7,7 +7,6 @@ import map.Map;
 
 public class SearchAlgorithm 
 {
-	private TilePosition start;
 	private TilePosition goal;
 	private Map map;
 	
@@ -16,29 +15,12 @@ public class SearchAlgorithm
 			
 	public SearchAlgorithm(TilePosition start, TilePosition goal, Map map) 
 	{
-		this.start = start;
 		this.goal = goal;
 		this.map = map;
 		
 		positionQueue = new PriorityQueue();
 		expanded = new HashSet<TilePosition>();
 		
-		addPos(start, new TilePath());
-	}
-
-	public void setStart(TilePosition start)
-	{
-		this.start = start;
-		positionQueue.clear();
-		expanded.clear();
-		addPos(start, new TilePath());
-	}
-	
-	public void setGoal(TilePosition goal)
-	{
-		this.goal = goal;
-		positionQueue.clear();
-		expanded.clear();
 		addPos(start, new TilePath());
 	}
 	
