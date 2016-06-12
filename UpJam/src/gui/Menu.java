@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -11,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -125,7 +127,7 @@ public class Menu {
 		panel.add(quit);
 
 		//Uptown Jammin'
-		JLabel studios = new JLabel("By UpJammin' Studios, Version 0.6.5");
+		JLabel studios = new JLabel("By UpJammin' Studios, Version 0.7");
 		studios.setBounds(15, 740, 750, 15);
 		studios.setFont(new Font("Press Start K", Font.PLAIN, 12));
 		studios.setForeground(blueColour);
@@ -155,10 +157,30 @@ public class Menu {
 		layeredPane.add(b, new Integer(2));
 		
 		panel.add(layeredPane);
-		
+
+		music();
 		frame.setVisible(true);
 
 	}
+	
+	/**
+	 * Sweet, sweet music
+	 */
+	public void music(){
+		try {
+			File soundFile = new File("resources/music/MenuMusic.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		new Menu();
 	}
