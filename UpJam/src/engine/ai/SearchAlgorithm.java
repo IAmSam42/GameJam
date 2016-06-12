@@ -52,8 +52,6 @@ public class SearchAlgorithm
 			
 			newPath.put(pos);
 			double weight = getHValue(pos, newPath);
-			
-			System.out.println("path added: " + newPath);
 		
 			positionQueue.put(newPath, weight);
 			expanded.add(pos);
@@ -76,9 +74,6 @@ public class SearchAlgorithm
 		{
 			TilePath frontierPath = positionQueue.pop();
 			TilePosition frontier = frontierPath.getDestination();
-			
-			System.out.println("Frontier path: " + frontierPath);
-			System.out.println("Frontier: " + frontier);
 			
 			if(frontier.equals(goal))
 			{
@@ -111,15 +106,5 @@ public class SearchAlgorithm
 		{
 			addPos(new TilePosition(elem.getX(), elem.getY() + 1), pathTo);
 		}
-	}
-	
-	public static void main(String[] args)
-	{
-		TilePosition t1 = new TilePosition(3, 4);
-		TilePosition t4 = new TilePosition(3, 6);
-		
-		SearchAlgorithm testSearch = new SearchAlgorithm(t1, t4, new Map());
-		
-		System.out.println(testSearch.search());
 	}
 }
