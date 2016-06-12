@@ -71,6 +71,7 @@ public class RobotIntelligence
 	
 	private void calculatePath()
 	{
+
 		SearchAlgorithm pathing = new SearchAlgorithm(tilePos, tileGoal, map);
 		path = pathing.search();
 	}
@@ -80,20 +81,16 @@ public class RobotIntelligence
 		this.tileGoal.setX(xCoord);
 		this.tileGoal.setY(yCoord);
 		
-		
 		calculatePath();
 	}
 	
 	public void scanPlayer()
 	{
-		if(detectPixel(player.getXCoord(), player.getYCoord())
-		|| detectPixel(player.getXCoord() + player.getSize(), player.getYCoord())
-		|| detectPixel(player.getXCoord(), player.getYCoord() + player.getSize())
-		|| detectPixel(player.getXCoord() + player.getSize(), player.getYCoord() + player.getSize())
-		)
+		if(detectPixel(player.getXCoord() + (player.getSize()/2), 
+				player.getYCoord() + (player.getSize()/2)))
 		{
-			int playerXTile = player.getXCoord()/32;
-			int playerYTile = player.getYCoord()/32;
+			int playerXTile = (player.getXCoord()+(player.getSize()/2))/32;
+			int playerYTile = (player.getYCoord()+(player.getSize()/2))/32;
 			
 			setGoal(playerXTile, playerYTile);
 		}
