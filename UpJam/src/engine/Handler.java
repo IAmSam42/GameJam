@@ -1,7 +1,6 @@
 package engine;
 
 import engine.entities.Entities;
-import engine.entities.Trap;
 import gui.Game;
 
 import java.awt.Graphics;
@@ -65,11 +64,6 @@ public class Handler {
 					}
 			}
 		}
-		
-		
-		
-		
-		
 		
 		//Render Extras behind players 
 		for (int i = 0; i < extras.size(); i++) {
