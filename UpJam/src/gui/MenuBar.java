@@ -26,7 +26,7 @@ public class MenuBar extends JPanel {
 
 	public MenuBar(int width, boolean isDay, JFrame game){
 		super();
-		setSize(width, 50);
+		setSize(width, 64);
 		
 		setLayout(new GridLayout(1, 3));
 
@@ -75,7 +75,7 @@ public class MenuBar extends JPanel {
 	 * @param no Number of traps
 	 */
 	public static void updateTrapsLabel(int no) {
-		trapsLabel.setText("No. of Traps: " + no);
+		trapsLabel.setText("   No. of Traps: " + no + "     ");
 	}
 	
 	/**

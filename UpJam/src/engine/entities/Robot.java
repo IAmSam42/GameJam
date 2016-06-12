@@ -1,6 +1,7 @@
 package engine.entities;
 
 import java.awt.Graphics;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
@@ -13,9 +14,9 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
-	private int scanRate = 10; //How many many ticks a scan happens
+	private int scanRate = 200; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
-	
+	private LinkedList<Entities> extras;
 	private boolean trapped;
 	
 	/**
@@ -25,13 +26,13 @@ public class Robot extends Entities
 	 * @param yCoord The x coordinate of the top right pixel of the robot 
 	 * @param size The size of the robot entity
 	 */
-	public Robot(int xCoord, int yCoord, int size, Map map, Player player) 
+	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
 	{
 		super(xCoord, yCoord, size);
 		this.sight = 3;
 		this.velocity = 1;
 		this.trapped = false;
-		
+		this.extras = extras;
 		this.scanValue = scanRate;
 		
 		ai = new RobotIntelligence(map, this, player);
@@ -52,28 +53,51 @@ public class Robot extends Entities
 		return trapped;
 	}
 	
+	private int count = 0;
+	
 	@Override
 	public void tick() 
 	{
-		for(int i=0; i<this.velocity; i++)
-		{
-			System.out.println("Move");
-			
-			//ai.nextMove();
+		for (int i = 0; i < this.extras.size(); i++) {
+			Trap current = (Trap) this.extras.get(i);
+			if((int)((current.getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE) == (int)((this.getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE)&& 
+					(int)((current.getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE) == (int)((this.getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE)){
+				this.trapped = true;
+				this.extras.remove(i);
+				break;
+			}
 		}
 		
-		if(scanValue-- == 0)
-		{
-			System.out.println("Scan");
+		if(!isTrapped()){
+			for(int i=0; i<this.velocity; i++)
+			{
+				//System.out.println("Move");
+				
+				ai.nextMove();
+			}
 			
-			ai.scanPlayer();
-			scanValue = scanRate;
+			if(scanValue-- == 0)
+			{
+				//System.out.println("Scan");
+				
+				//ai.scanPlayer();
+				scanValue = scanRate;
+			}
+		}else{
+			count++;
+		}
+		
+		if(count > 300){
+			this.trapped = false;
+			count = 0;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if(this.direction == Direction.UP){
+		if(isTrapped()){
+			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(this.direction == Direction.UP){
 			g.drawImage(new ImageIcon("resources/sprites/bobBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
 		}else{
 			g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
