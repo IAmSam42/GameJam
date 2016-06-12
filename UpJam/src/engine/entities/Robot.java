@@ -14,7 +14,7 @@ public class Robot extends Entities
 {
 	private RobotIntelligence ai;
 	private int sight; //How many tiles the robot can see
-	private int scanRate = 50; //How many many ticks a scan happens
+	private int scanRate = 20; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	private LinkedList<Entities> extras;
 	private boolean trapped;
@@ -63,16 +63,18 @@ public class Robot extends Entities
 	{
 		if(tracking && !this.tracking)
 		{
-			System.out.println("Player Spotted!");
+			this.velocity = 3;
 		}
 		if(!tracking && this.tracking)
 		{
-			System.out.println("Player Lost!");
+			this.velocity = 1;
 		}
+		
 		this.tracking = tracking;
 	}
 	
 	private int count = 0;
+	
 	
 	@Override
 	public void tick() 
