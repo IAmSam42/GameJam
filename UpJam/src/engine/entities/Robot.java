@@ -16,6 +16,8 @@ public class Robot extends Entities
 	private int scanRate = 10; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	
+	private boolean trapped;
+	
 	/**
 	 * Create a robot entity
 	 * 
@@ -28,6 +30,7 @@ public class Robot extends Entities
 		super(xCoord, yCoord, size);
 		this.sight = 3;
 		this.velocity = 1;
+		this.trapped = false;
 		
 		this.scanValue = scanRate;
 		
@@ -44,6 +47,11 @@ public class Robot extends Entities
 		this.sight = sight;
 	}
 	
+	public boolean isTrapped()
+	{
+		return trapped;
+	}
+	
 	@Override
 	public void tick() 
 	{
@@ -51,14 +59,14 @@ public class Robot extends Entities
 		{
 			System.out.println("Move");
 			
-			ai.nextMove();
+			//ai.nextMove();
 		}
 		
 		if(scanValue-- == 0)
 		{
 			System.out.println("Scan");
 			
-			//ai.scanPlayer();
+			ai.scanPlayer();
 			scanValue = scanRate;
 		}
 	}
