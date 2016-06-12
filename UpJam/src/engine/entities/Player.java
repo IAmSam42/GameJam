@@ -137,6 +137,6 @@ public class Player extends Entities {
 
 
 	public void dropTrap() {
-		handler.addExtras(new Trap((((int)((getXCoord()+16)/32))*32)+8,(((int)((getYCoord()+16)/32))*32)+8,Tile.TILESIZE));	
+		handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
 	}
 }
