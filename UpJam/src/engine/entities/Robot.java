@@ -22,9 +22,7 @@ public class Robot extends Entities
 
 	public void nextPosition()
 	{
-		ai.nextPosition();
-		this.setXCoord(ai.getX());
-		this.setYCoord(ai.getY());
+		
 	}
 	
 	@Override
