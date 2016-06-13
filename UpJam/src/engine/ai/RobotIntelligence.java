@@ -25,14 +25,12 @@ public class RobotIntelligence
 	private TilePath path;
 	private Robot robot;
 	private Player player;
-	private Handler handler;
 	
-	public RobotIntelligence(Map map, Robot robot, Player player, Handler handler) 
+	public RobotIntelligence(Map map, Robot robot, Player player) 
 	{
 		this.map = map;
 		this.robot = robot;
 		this.player = player;
-		this.handler = handler;
 		
 		tilePos = new TilePosition(0, 0);
 		tileGoal = new TilePosition(0, 0);
