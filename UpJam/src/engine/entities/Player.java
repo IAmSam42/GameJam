@@ -151,7 +151,7 @@ public class Player extends Entities {
 	}
 	
 	public void dropTrap() {
-		if(this.trapLimit != 0 ){
+		if(trapLimit != 0 ){
 			handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
 			trapLimit--;
 			MenuBar.updateTrapsLabel(trapLimit);
