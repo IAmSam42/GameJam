@@ -3,11 +3,8 @@ package engine.ai;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.util.LinkedList;
 import java.util.Random;
 
-import engine.Handler;
-import engine.entities.Entities;
 import engine.entities.Player;
 import engine.entities.Robot;
 import map.Map;
