@@ -15,7 +15,6 @@ public class Window extends JFrame{
 	public static Window acc;
 	
 	public Window(int w, int h, String title, Game game){
-		acc = this;
 		Dimension dimention = new Dimension(w, h +85);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
@@ -40,6 +39,7 @@ public class Window extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
+		acc = this;
 		game.start();
 		
 		//frame.setUndecorated(true);	
