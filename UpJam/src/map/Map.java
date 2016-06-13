@@ -13,6 +13,8 @@ public class Map {
 	final int dayCarpet = (255 << 24) | (255 << 16) | (255 << 8) | (255);
 	// deadMan (a: 255, r: 255, g:255, b:255)
 	final int deadMan = (255 << 24) | (0 << 16) | (0 << 8) | (0);
+	// blood (a:255, r:140, g:1, b:1)
+	final int blood = (255 << 24) | (140 << 16) | (1 << 8) | (1);
 	// inUpLeft (a:255, r:61, g:255, b:2)
 	final int cornerInUpLeft = (255 << 24) | (61 << 16) | (255 << 8) | (2);
 	// inUpRight (a:255, r:247, g:255, b:3)
@@ -68,46 +70,49 @@ public class Map {
 					switch(rgbVal) {
 						
 						case dayCarpet:
-							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, dayCarpet);
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, "floor/dayCarpet.png");
 							break;
 						case deadMan:
-							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, deadMan);
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, "floor/deadMan.png");
+							break;
+						case blood:
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, "floor/blood.png");
 							break;
 						case wallUp:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, wallUp);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallWholeUp.png");
 							break;
 						case wallDown:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, wallDown);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallWholeDown.png");
 							break;
 						case wallLeft:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, wallLeft);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallWholeLeft.png");
 							break;
 						case wallRight:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, wallRight);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallWholeRight.png");
 							break;
 						case cornerInUpRight:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerInUpRight);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerIUR.png");
 							break;
 						case cornerInUpLeft:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerInUpLeft);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerIUL.png");
 							break;
 						case cornerInDownRight:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerInDownRight);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerIDR.png");
 							break;
 						case cornerInDownLeft:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerInDownLeft);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerIDL.png");
 							break;
 						case cornerOutUpRight:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerOutUpRight);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerOUR.png");
 							break;
 						case cornerOutUpLeft:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerOutUpLeft);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerOUL.png");
 							break;
 						case cornerOutDownRight:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerOutDownRight);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerODR.png");
 							break;
 						case cornerOutDownLeft:
-							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, cornerOutDownLeft);
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerODL.png");
 							break;
 						default: 
 							map[x][y] = new TextureError(x*Tile.TILESIZE, y*Tile.TILESIZE);

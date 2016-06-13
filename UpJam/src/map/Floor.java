@@ -11,22 +11,10 @@ public class Floor extends Tile {
 
 	private Image img; 
 	
-	public Floor(int xCoord, int yCoord, int floorType) {
+	public Floor(int xCoord, int yCoord, String pathText) {
 		super(xCoord, yCoord);
 		this.setSolid(false);
 		transparency = .7;
-		String pathText;
-		switch(floorType) {
-		
-			case (255 << 24) | (255 << 16) | (255 << 8) | (255):
-				pathText = "floor/dayCarpet.png";
-				break;
-			case (255 << 24) | (0 << 16) | (0 << 8) | (0):
-				pathText = "floor/deadMan.png";
-				break;
-			default:
-				pathText = null;
-		}
 		img = new ImageIcon(this.path + pathText).getImage(); 
 
 	}
