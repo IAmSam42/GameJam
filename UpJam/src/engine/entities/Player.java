@@ -118,10 +118,14 @@ public class Player extends Entities {
 			g.drawImage(new ImageIcon("resources/sprites/samBackSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
 		}else if(dPressed){
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord()+Tile.TILESIZE, this.getYCoord(), -Tile.TILESIZE, Tile.TILESIZE,null);
+			g2d.drawImage(new ImageIcon("resources/sprites/samFrontLeftSprite.gif").getImage() , this.getXCoord()+Tile.TILESIZE, this.getYCoord(), -Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(aPressed){
+			g.drawImage(new ImageIcon("resources/sprites/samFrontLeftSprite.gif").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+		}else if(sPressed){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(new ImageIcon("resources/sprites/samFrontLeftSprite.gif").getImage() , this.getXCoord()+Tile.TILESIZE, this.getYCoord(), -Tile.TILESIZE, Tile.TILESIZE,null);
 		}else{
 			g.drawImage(new ImageIcon("resources/sprites/sam.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
-			
 		}
 		
 		//g.setColor(Color.DARK_GRAY);
