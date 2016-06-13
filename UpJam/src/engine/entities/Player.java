@@ -106,7 +106,7 @@ public class Player extends Entities {
 		
 		if(!Game.isDay){
 			for (int i = 0; i < robots.size(); i++) {
-				if(Math.abs((((robots.get(i).getXCoord()-(Tile.TILESIZE/2)) - ((this.getXCoord()-(Tile.TILESIZE/2)) )))) < 20 && Math.abs((((robots.get(i).getYCoord()-(Tile.TILESIZE/2)) - ((this.getYCoord()-(Tile.TILESIZE/2)) )))) < 20){
+				if(Math.abs((((robots.get(i).getXCoord()-(Tile.TILESIZE/2)) - ((this.getXCoord()-(Tile.TILESIZE/2)) )))) < 30 && Math.abs((((robots.get(i).getYCoord()-(Tile.TILESIZE/2)) - ((this.getYCoord()-(Tile.TILESIZE/2)) )))) < 30){
 					new GameOver(Game.noOfDays);
 					Window.close();
 					
