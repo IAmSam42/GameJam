@@ -3,8 +3,11 @@ package engine.ai;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
 import java.util.Random;
 
+import engine.Handler;
+import engine.entities.Entities;
 import engine.entities.Player;
 import engine.entities.Robot;
 import map.Map;
@@ -22,12 +25,14 @@ public class RobotIntelligence
 	private TilePath path;
 	private Robot robot;
 	private Player player;
+	private Handler handler;
 	
-	public RobotIntelligence(Map map, Robot robot, Player player) 
+	public RobotIntelligence(Map map, Robot robot, Player player, Handler handler) 
 	{
 		this.map = map;
 		this.robot = robot;
 		this.player = player;
+		this.handler = handler;
 		
 		tilePos = new TilePosition(0, 0);
 		tileGoal = new TilePosition(0, 0);
