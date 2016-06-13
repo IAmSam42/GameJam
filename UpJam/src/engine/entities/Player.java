@@ -16,7 +16,7 @@ import gui.MenuBar;
 public class Player extends Entities {
 	
 	private boolean aPressed = false , wPressed = false, sPressed = false, dPressed = false;
-	private int playerSpeed = 2;
+	private int playerSpeed = 1;
 	private Direction direction;
 	private Map map;
 	private static int trapLimit;
