@@ -12,6 +12,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
+import javax.management.monitor.MonitorSettingException;
 import javax.sound.sampled.Clip;
 
 import map.Camera;
@@ -58,6 +59,10 @@ public class Handler {
 	
 	public void addExtras(Entities trap) {
 		extras.add(trap);		
+	}
+	
+	public LinkedList<Entities> getRobots(){
+		return robots;
 	}
 
 	public void tick(){
