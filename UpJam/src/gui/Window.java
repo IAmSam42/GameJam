@@ -9,13 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import engine.Handler;
+
 public class Window extends JFrame{
 	private static final long serialVersionUID = 1L;
 	static JLabel instructions;
 	public static Window acc;
 	
 	public Window(int w, int h, String title, Game game){
-		acc = this;
 		Dimension dimention = new Dimension(w, h +85);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
@@ -40,13 +41,16 @@ public class Window extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
+		acc = this;
 		game.start();
 		
 		//frame.setUndecorated(true);	
 	}
 	
 	public static void close(){
+		Game.running = false;
 		acc.dispose();
+		
 	}
 	
 	public static void survive(){

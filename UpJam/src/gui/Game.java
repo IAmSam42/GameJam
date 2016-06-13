@@ -24,9 +24,9 @@ public class Game extends Canvas implements Runnable{
 	public static int timeTillDay = 60*120;
 	public static int noOfDays = 0;
 	private static final long serialVersionUID = 1L;
-	private boolean running = false;
+	public static boolean running = false;
 	private Thread thread;
-	private Handler handler;
+	private static Handler handler;
 	private Camera cam;
 	
 	public JFrame frame = new JFrame();
@@ -58,10 +58,11 @@ public class Game extends Canvas implements Runnable{
 		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler));
 		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler));
 		
-		this.addKeyListener(new KeyHandler(player));
+		this.addKeyListener(new KeyHandler(player, handler));
 		this.setFocusable(true);
 
 	}	
+	
 	
 	/**
 	 * Starts the Game

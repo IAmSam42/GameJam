@@ -6,13 +6,10 @@ import engine.entities.Player;
 import engine.entities.Robot;
 import gui.Game;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import javax.management.monitor.MonitorSettingException;
 import javax.sound.sampled.Clip;
 
 import map.Camera;
@@ -150,6 +147,11 @@ public class Handler {
 		while(robotIterator.hasNext()){
 			((Robot)robotIterator.next()).getRobotAudio().mute(mute);
 		}
+		
+	}
+
+	public void genRobot() {
+		int c = Game.noOfDays;
 		
 	}
 
