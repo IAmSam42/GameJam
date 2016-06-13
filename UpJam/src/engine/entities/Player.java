@@ -11,7 +11,9 @@ import map.Tile;
 import misc.Direction;
 import engine.Handler;
 import gui.Game;
+import gui.GameOver;
 import gui.MenuBar;
+import gui.Window;
 
 public class Player extends Entities {
 	
@@ -105,7 +107,8 @@ public class Player extends Entities {
 		if(!Game.isDay){
 			for (int i = 0; i < robots.size(); i++) {
 				if(Math.abs((((robots.get(i).getXCoord()-(Tile.TILESIZE/2)) - ((this.getXCoord()-(Tile.TILESIZE/2)) )))) < 20 && Math.abs((((robots.get(i).getYCoord()-(Tile.TILESIZE/2)) - ((this.getYCoord()-(Tile.TILESIZE/2)) )))) < 20){
-					//CALL GAME OVER SCREEN
+					new GameOver(Game.noOfDays);
+				
 				}
 			}
 		}
