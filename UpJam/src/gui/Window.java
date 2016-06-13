@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import engine.Handler;
+
 public class Window extends JFrame{
 	private static final long serialVersionUID = 1L;
 	static JLabel instructions;
@@ -46,7 +48,9 @@ public class Window extends JFrame{
 	}
 	
 	public static void close(){
+		Game.running = false;
 		acc.dispose();
+		
 	}
 	
 	public static void survive(){
