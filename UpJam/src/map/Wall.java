@@ -14,7 +14,7 @@ public class Wall extends Tile {
 	public Wall(int xCoord, int yCoord, int wallType) {
 		super(xCoord, yCoord);
 		this.setSolid(true);
-		transparency = 0;
+		transparency = 0.1;
 		String pathText;
 		switch(wallType) {
 		

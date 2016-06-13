@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
+import audioController.RobotAudio;
 import map.Map;
 import map.Tile;
 import misc.Direction;
@@ -19,7 +20,7 @@ public class Robot extends Entities
 	private LinkedList<Entities> extras;
 	private boolean trapped;
 	private boolean tracking;
-	
+	private RobotAudio audio;
 	/**
 	 * Create a robot entity
 	 * 
@@ -35,7 +36,7 @@ public class Robot extends Entities
 		this.trapped = false;
 		this.extras = extras;
 		this.scanValue = scanRate;
-		
+		audio = new RobotAudio(this, player);
 		ai = new RobotIntelligence(map, this, player);
 	}
 	
@@ -115,6 +116,7 @@ public class Robot extends Entities
 			this.trapped = false;
 			count = 0;
 		}
+		audio.tick();
 	}
 
 	@Override
