@@ -9,6 +9,7 @@ import audioController.RobotAudio;
 import map.Map;
 import map.Tile;
 import misc.Direction;
+import engine.Handler;
 import engine.ai.RobotIntelligence;
 
 public class Robot extends Entities 
@@ -28,14 +29,14 @@ public class Robot extends Entities
 	 * @param yCoord The x coordinate of the top right pixel of the robot 
 	 * @param size The size of the robot entity
 	 */
-	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
+	public Robot(int xCoord, int yCoord, int size, Map map, Player player, Handler handler) 
 	{
 		super(xCoord, yCoord, size);
 		this.velocity = 1;
 		this.trapped = false;
-		this.extras = extras;
+		this.extras = handler.getExtras();
 		this.scanValue = scanRate;
-		audio = new RobotAudio(this, player);
+		audio = new RobotAudio(this, player, handler);
 		ai = new RobotIntelligence(map, this, player);
 	}
 	

@@ -51,11 +51,11 @@ public class Game extends Canvas implements Runnable{
 
 		Player player = new Player(32,32, Tile.TILESIZE, handler, map);
 
-		handler.addRobot(new Robot(288, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-		handler.addRobot(new Robot(1000, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-		handler.addRobot(new Robot(100, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(288, 224, Tile.TILESIZE, map, player, handler));
+		handler.addRobot(new Robot(1000, 224, Tile.TILESIZE, map, player, handler));
+		handler.addRobot(new Robot(100, 224, Tile.TILESIZE, map, player, handler));
+		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler));
+		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler));
 		
 		this.addKeyListener(new KeyHandler(player));
 		this.setFocusable(true);
