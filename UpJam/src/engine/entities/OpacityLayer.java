@@ -31,7 +31,7 @@ public class OpacityLayer extends GameObject {
 		int x = getXCoord()/getSize();
 		int y = getYCoord()/getSize();
 		
-		System.out.println("X: "+x+"  Y: "+y+" prevX: "+prevX+"prevY: "+prevY);
+//		System.out.println("X: "+x+"  Y: "+y+" prevX: "+prevX+"prevY: "+prevY);
 		opacity = inputOpacity;
 		double outputOpacity = 0;
 		
@@ -71,7 +71,7 @@ public class OpacityLayer extends GameObject {
 		int y = getYCoord()/getSize();
 		opacity = inputOpacity;
 		double outputOpacity = inputOpacity*map.getTile(x/2, y/2).getTransparancy();
-		System.out.println("Map width: "+map.getWidth() +"THing: "+(2*x-prevX)+" test: "+(2*x-prevX>=map.getWidth()*2));
+//		System.out.println("Map width: "+map.getWidth() +"THing: "+(2*x-prevX)+" test: "+(2*x-prevX>=map.getWidth()*2));
 		if(outputOpacity>.2){
 			if(2*x-prevX<0|2*x-prevX>=map.getWidth()*2|2*y-prevY<0|2*y-prevY>=map.getHeight()*2)
 				return;

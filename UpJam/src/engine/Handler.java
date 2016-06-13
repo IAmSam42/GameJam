@@ -50,7 +50,7 @@ public class Handler {
 	}
 
 	public void addRobot(Entities Robot){
-		//robots.add(Robot);
+		robots.add(Robot);
 	}
 	
 	public void addExtras(Entities trap) {
