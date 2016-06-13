@@ -136,6 +136,7 @@ public class Game extends Canvas implements Runnable{
 				MenuBar.updateTrapsLabel(Player.getTrapLimit() + 7 );
 				Player.setTrapLimit(Player.getTrapLimit() + 7 );
 				timeTillDay = (int) (timeTillDay*1.1);
+				Window.setInstructions();
 				handler.muteAllRobots(true);
 			}
 		}

@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import engine.entities.Player;
 import gui.Game;
+import gui.Window;
 
 public class KeyHandler extends KeyAdapter {
 	Player player;
@@ -22,7 +23,7 @@ public class KeyHandler extends KeyAdapter {
 	    if(key == KeyEvent.VK_S){player.setSPressed(true);}
 	    
 	    if(key == KeyEvent.VK_SPACE){if(!held){if(Game.isDay){player.dropTrap();}} held = true; }
-	    if(key == KeyEvent.VK_ENTER){if(Game.isDay){Game.isDay = false;}}
+	    if(key == KeyEvent.VK_ENTER){if(Game.isDay){Game.isDay = false; Window.survive();}}
     }
 
     
