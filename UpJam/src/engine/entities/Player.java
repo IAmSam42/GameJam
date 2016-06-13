@@ -2,6 +2,7 @@ package engine.entities;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
@@ -9,6 +10,7 @@ import map.Map;
 import map.Tile;
 import misc.Direction;
 import engine.Handler;
+import gui.Game;
 
 public class Player extends Entities {
 	
@@ -16,10 +18,11 @@ public class Player extends Entities {
 	private int playerSpeed = 2;
 	private Direction direction;
 	private Map map;
-	
+	private int trapLimit;
 
 
 	private Handler handler;
+	private LinkedList<Entities> robots;
 	
 	public Player(int xCoord, int yCoord, int size, Handler handler, Map map) {
 		super(xCoord, yCoord, size);
@@ -27,7 +30,7 @@ public class Player extends Entities {
 		this.handler = handler;
 		handler.addPlayer(this);
 		direction = Direction.DOWN;
-
+		this.trapLimit = 5;
 	}
 
 	@Override
@@ -98,7 +101,13 @@ public class Player extends Entities {
 //			map.getTile(x, y).calculateOpacityFront(map,x+1, y, 1);
 //		}
 		
-		
+		if(!Game.isDay){
+			for (int i = 0; i < robots.size(); i++) {
+				if(Math.abs((((robots.get(i).getXCoord()-(Tile.TILESIZE/2)) - ((this.getXCoord()-(Tile.TILESIZE/2)) )))) < 20 && Math.abs((((robots.get(i).getYCoord()-(Tile.TILESIZE/2)) - ((this.getYCoord()-(Tile.TILESIZE/2)) )))) < 20){
+					//CALL GAME OVER SCREEN
+				}
+			}
+		}
 	}
 	
 
@@ -138,6 +147,22 @@ public class Player extends Entities {
 
 
 	public void dropTrap() {
-		handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
+		if(this.trapLimit != 0 ){
+			handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
+			trapLimit--;
+			//UPDATE TRAP SCORE
+		}
+	}
+		
+	public int getTrapLimit(){
+		return this.trapLimit;
+	}
+	
+	public void setTrapLimit(int trapLimit){
+		this.trapLimit = trapLimit;
+	}
+
+	public void addRobots(LinkedList<Entities> robots) {
+		this.robots = robots;
 	}
 }

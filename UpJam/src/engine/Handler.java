@@ -49,6 +49,7 @@ public class Handler {
 	public void addPlayer(Player player){
 		this.player = player;
 		player.addMap(map);
+		player.addRobots(robots);
 	}
 
 	public void addRobot(Entities Robot){
