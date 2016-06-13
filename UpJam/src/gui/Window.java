@@ -13,7 +13,7 @@ public class Window extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	public Window(int w, int h, String title, Game game){
-		Dimension dimention = new Dimension(w, h + 45);
+		Dimension dimention = new Dimension(w, h +85);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
 		setPreferredSize(dimention);
