@@ -11,11 +11,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import engine.entities.Player;
 import engine.entities.Robot;
-import gui.Game;
 
 public class RobotAudio {
 	Robot robot;
@@ -68,13 +66,15 @@ public class RobotAudio {
 	}
 	
 	public void tick(){
-		mute(false);
-		int distSqr = ((player.getXCoord()-robot.getXCoord())^2) + ((player.getYCoord()-robot.getYCoord())^2);
+		mute(true);
+		int distSqr = ((player.getXCoord()-robot.getXCoord())*(player.getXCoord()-robot.getXCoord())) + ((player.getYCoord()-robot.getYCoord())*(player.getYCoord()-robot.getYCoord()));
 		double distance = Math.sqrt((double)distSqr);
-		if(distance<320){
-			mute(true);
-			System.out.println("robot x coord: "+robot.getXCoord() + " player X coord: "+player.getXCoord());
-			setPan(robot.getXCoord()-player.getXCoord()/320);
+		
+		if(distance<320)
+		{
+			mute(false);
+			double panAmount = (double)(robot.getXCoord()-player.getXCoord())/(double)320;
+			setPan(panAmount);
 		}
 		
 
