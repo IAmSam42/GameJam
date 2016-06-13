@@ -87,28 +87,6 @@ public class Handler {
 				fog[x+1][y].spreadOpacityCorner(x, y+1, 1, fog, map);
 				fog[x][y+1].spreadOpacityCorner(x+1, y, 1, fog, map);
 				fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
-//			fog[x-1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
-//			fog[x-1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
-//			fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
-//			fog[x+1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
-//			fog[x-1][y].spreadOpacityCentre(x, y, 1, fog, map);
-//			fog[x][y+1].spreadOpacityCentre(x, y, 1, fog, map);
-//			fog[x][y-1].spreadOpacityCentre(x, y, 1, fog, map);
-//			fog[x+1][y].spreadOpacityCentre(x, y, 1, fog, map);
-//			}catch(ArrayIndexOutOfBoundsException e){}
-//			
-//			fog[(game.WIDTH/Tile.TILESIZE)][(game.HEIGHT/Tile.TILESIZE)].setOpacity(1);
-//			fog[(game.WIDTH/Tile.TILESIZE)][(game.HEIGHT/Tile.TILESIZE)].spreadOpacityCorner(((game.WIDTH/Tile.TILESIZE) )+1, ((game.HEIGHT/Tile.TILESIZE) )+1, 1, fog, map);
-//			
-//			fog[(game.WIDTH/Tile.TILESIZE) +1][(game.HEIGHT/Tile.TILESIZE) ].setOpacity(1);
-//			fog[(game.WIDTH/Tile.TILESIZE) +1][(game.HEIGHT/Tile.TILESIZE) ].spreadOpacityCorner(((game.WIDTH/Tile.TILESIZE) ), ((game.HEIGHT/Tile.TILESIZE) )+1, 1, fog, map);
-//			
-//			fog[(game.WIDTH/Tile.TILESIZE) ][(game.HEIGHT/Tile.TILESIZE) +1].setOpacity(1);
-//			fog[(game.WIDTH/Tile.TILESIZE) ][(game.HEIGHT/Tile.TILESIZE) +1].spreadOpacityCorner(((game.WIDTH/Tile.TILESIZE) )+1, ((game.HEIGHT/Tile.TILESIZE) ), 1, fog, map);
-//			
-//			fog[(game.WIDTH/Tile.TILESIZE) +1][(game.HEIGHT/Tile.TILESIZE) +1].setOpacity(1);
-//			fog[(game.WIDTH/Tile.TILESIZE) +1][(game.HEIGHT/Tile.TILESIZE) +1].spreadOpacityCorner((game.WIDTH/Tile.TILESIZE) , (game.HEIGHT/Tile.TILESIZE) , 1, fog, map);
-			
 		}
 	}
 	
@@ -122,10 +100,7 @@ public class Handler {
 						&& map.getTile(x, y).getXCoord() <= (game.getWidth() - cam.getX())
 						&& map.getTile(x, y).getYCoord() <= (game.getHeight() - cam.getY())) {
 					map.getTile(x, y).render(g);
-					//System.out.println(((1-map.getTile(x, y).getOpacity())*255));
-//					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
-//					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
-					map.getTile(x, y).setOpacity(0.05);
+				map.getTile(x, y).setOpacity(0.05);
 				}
 			}
 		}
