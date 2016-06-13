@@ -63,11 +63,17 @@ public class Credits {
 		panel.add(credit, BorderLayout.CENTER);
 		
 		//Images
-		ImageIcon corridor = new ImageIcon("resources/Sprites/tomSprite.png");
-		JLabel c = new JLabel();
-		c.setIcon(corridor);
-		c.setBounds(215, 396, 64, 64);
-		panel.add(c, new Integer(1));
+		ImageIcon tom = new ImageIcon("resources/Sprites/tomSprite.png");
+		JLabel t = new JLabel();
+		t.setIcon(tom);
+		t.setBounds(235, 396, 64, 64);
+		panel.add(t, new Integer(1));
+		
+		ImageIcon shorts = new ImageIcon("resources/Sprites/shortsSprite.png");
+		JLabel s = new JLabel();
+		s.setIcon(shorts);
+		s.setBounds(295, 396, 64, 64);
+		panel.add(s, new Integer(1));
 		
 		frame.setVisible(true);
 	}
