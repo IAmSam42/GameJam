@@ -81,7 +81,7 @@ public class RobotAudio {
 			mute(false);
 			double panAmount = (double)(robot.getXCoord()-player.getXCoord())/(double)320;
 			setPan(panAmount);
-			setVolume((float)(distance/(double)80));
+			setVolume((float)-6.0);
 		}
 		
 
