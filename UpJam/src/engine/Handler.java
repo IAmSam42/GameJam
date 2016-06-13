@@ -160,13 +160,18 @@ public class Handler {
 		
 		for(int i = 0; i < 5+c; i++)
 		{
-			int xCoord = generator.nextInt(map.getWidth() * Tile.TILESIZE);
-			int yCoord = generator.nextInt(map.getHeight() * Tile.TILESIZE);
-			
-			if(!map.getTile(xCoord/32, yCoord/32).isSolid())
+			while(true)
 			{
-				Robot robot = new Robot(xCoord, yCoord, Tile.TILESIZE, map, player, this);
-				this.addRobot(robot);
+				int xCoord = generator.nextInt(map.getWidth() * Tile.TILESIZE);
+				int yCoord = generator.nextInt(map.getHeight() * Tile.TILESIZE);
+			
+				if(!map.getTile(xCoord/32, yCoord/32).isSolid())
+				{
+					Robot robot = new Robot(xCoord, yCoord, Tile.TILESIZE, map, player, this);
+					this.addRobot(robot);
+					System.out.println("Robot Spawned!");
+					break;
+				}
 			}
 		}
 	}
