@@ -93,7 +93,9 @@ public class RobotIntelligence
 			int playerYTile = (player.getYCoord()+(player.getSize()/2))/32;
 			
 			if(!(tileGoal.equals(new TilePosition(playerXTile, playerYTile))))
-			setGoal(playerXTile, playerYTile);
+			{
+				setGoal(playerXTile, playerYTile);
+			}
 			robot.setTracking(true);
 			return true;
 		}

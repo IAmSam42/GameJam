@@ -14,8 +14,8 @@ import engine.ai.RobotIntelligence;
 public class Robot extends Entities 
 {
 	private RobotIntelligence ai;
-	private int sight; //How many tiles the robot can see
-	private int scanRate = 20; //How many many ticks a scan happens
+	private int sight = 5; //How many tiles the robot can see
+	private int scanRate = 5; //How many many ticks a scan happens
 	private int scanValue; //Counter until a scan happens
 	private LinkedList<Entities> extras;
 	private boolean trapped;
@@ -31,7 +31,6 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
 	{
 		super(xCoord, yCoord, size);
-		this.sight = 4;
 		this.velocity = 1;
 		this.trapped = false;
 		this.extras = extras;
@@ -64,7 +63,7 @@ public class Robot extends Entities
 	{
 		if(tracking && !this.tracking)
 		{
-			this.velocity = 3;
+			this.velocity = 2;
 		}
 		if(!tracking && this.tracking)
 		{
