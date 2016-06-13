@@ -18,7 +18,6 @@ import engine.entities.Robot;
 public class RobotAudio {
 	Robot robot;
 	Player player;
-	FloatControl volume;
 	Clip clip;
 	
 	public RobotAudio(Robot robot, Player player) {
@@ -38,9 +37,7 @@ public class RobotAudio {
 				clip = AudioSystem.getClip();
 				clip.open(audioInputStream);
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
-				clip.start();
-				volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-				
+				clip.start();			
 				
 
 		} catch (UnsupportedAudioFileException e) {
@@ -66,11 +63,6 @@ public class RobotAudio {
 		pand.setValue((float)pan);
 	}
 	
-	public void setVolume(float volume)
-	{
-		this.volume.setValue(volume);
-	}
-	
 	public void tick(){
 		mute(true);
 		int distSqr = ((player.getXCoord()-robot.getXCoord())*(player.getXCoord()-robot.getXCoord())) + ((player.getYCoord()-robot.getYCoord())*(player.getYCoord()-robot.getYCoord()));
@@ -81,7 +73,6 @@ public class RobotAudio {
 			mute(false);
 			double panAmount = (double)(robot.getXCoord()-player.getXCoord())/(double)320;
 			setPan(panAmount);
-			setVolume((float)(distance/(double)80));
 		}
 		
 

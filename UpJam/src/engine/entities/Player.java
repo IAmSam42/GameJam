@@ -11,6 +11,7 @@ import map.Tile;
 import misc.Direction;
 import engine.Handler;
 import gui.Game;
+import gui.MenuBar;
 
 public class Player extends Entities {
 	
@@ -18,7 +19,7 @@ public class Player extends Entities {
 	private int playerSpeed = 2;
 	private Direction direction;
 	private Map map;
-	private int trapLimit;
+	private static int trapLimit;
 
 
 	private Handler handler;
@@ -30,7 +31,7 @@ public class Player extends Entities {
 		this.handler = handler;
 		handler.addPlayer(this);
 		direction = Direction.DOWN;
-		this.trapLimit = 5;
+		trapLimit = 5;
 	}
 
 	@Override
@@ -148,22 +149,21 @@ public class Player extends Entities {
 	public void setSPressed(boolean n){
 		this.sPressed = n;
 	}
-
-
+	
 	public void dropTrap() {
 		if(this.trapLimit != 0 ){
 			handler.addExtras(new Trap((((int)((getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),(((int)((getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE))*Tile.TILESIZE)+(Tile.TILESIZE/4),Tile.TILESIZE));	
 			trapLimit--;
-			//UPDATE TRAP SCORE
+			MenuBar.updateTrapsLabel(trapLimit);
 		}
 	}
 		
-	public int getTrapLimit(){
-		return this.trapLimit;
+	public static int getTrapLimit(){
+		return Player.trapLimit;
 	}
 	
-	public void setTrapLimit(int trapLimit){
-		this.trapLimit = trapLimit;
+	public static void setTrapLimit(int trapLimit){
+		Player.trapLimit = trapLimit;
 	}
 
 	public void addRobots(LinkedList<Entities> robots) {
