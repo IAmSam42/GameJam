@@ -48,7 +48,6 @@ public class RobotIntelligence
 	
 	private void newRandomGoal()
 	{
-		System.out.println("Generating Random Goal!");
 		int xCoord;
 		int yCoord; 
 		
