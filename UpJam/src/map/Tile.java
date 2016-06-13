@@ -69,6 +69,9 @@ public abstract class Tile extends GameObject
 			}
 		}
 	}
+	public double getTransparancy(){
+		return transparency;
+	}
 	/*
 	public void calculateOpacityForward(Map map, Direction direction, double inputopacity) {
 		opacity = inputopacity;

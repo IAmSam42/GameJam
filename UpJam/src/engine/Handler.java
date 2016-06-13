@@ -1,6 +1,7 @@
 package engine;
 
 import engine.entities.Entities;
+import engine.entities.OpacityLayer;
 import engine.entities.Player;
 import gui.Game;
 
@@ -22,7 +23,7 @@ public class Handler {
 	private LinkedList<Entities> robots = new LinkedList<Entities>();
 	private LinkedList<Entities> extras = new LinkedList<Entities>();
 	private Camera cam;
-	private Rectangle[][] fog;
+	private OpacityLayer[][] fog;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -30,12 +31,12 @@ public class Handler {
 	
 	public void createMap(Map map){
 		this.map = map;
-		fog = new Rectangle[map.getWidth()][map.getHeight()];
-//		for(int y = 0; y<map.getHeight();y++){
-//			for(int x = 0; x<map.getWidth();x++){
-//				fog[x][y] = new Rectangle(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
-//			}
-//		}
+		fog = new OpacityLayer[map.getWidth()*2][map.getHeight()*2];
+		for(int y = 0; y<map.getHeight()*2;y++){
+			for(int x = 0; x<map.getWidth()*2;x++){
+				fog[x][y] = new OpacityLayer(x*Tile.TILESIZE/2, y*Tile.TILESIZE/2, Tile.TILESIZE);
+			}
+		}
 		
 	}
 	
@@ -66,6 +67,23 @@ public class Handler {
 			for (int i = 0; i < robots.size(); i++) {
 				robots.get(i).tick();
 			}
+			for(OpacityLayer[] p: fog)
+				for(OpacityLayer q: p)
+					q.setOpacity(0);
+			
+			
+			fog[(game.WIDTH/Tile.TILESIZE)/2][(game.HEIGHT/Tile.TILESIZE)/2].setOpacity(1);
+			fog[(game.WIDTH/Tile.TILESIZE)/2][(game.HEIGHT/Tile.TILESIZE)/2].spreadOpacityCorner((game.WIDTH/Tile.TILESIZE)/2+1, (game.HEIGHT/Tile.TILESIZE)/2+1, 1, fog, map);
+			
+			fog[(game.WIDTH/Tile.TILESIZE)/2+1][(game.HEIGHT/Tile.TILESIZE)/2].setOpacity(1);
+			fog[(game.WIDTH/Tile.TILESIZE)/2+1][(game.HEIGHT/Tile.TILESIZE)/2].spreadOpacityCorner((game.WIDTH/Tile.TILESIZE)/2, (game.HEIGHT/Tile.TILESIZE)/2+1, 1, fog, map);
+			
+			fog[(game.WIDTH/Tile.TILESIZE)/2][(game.HEIGHT/Tile.TILESIZE)/2+1].setOpacity(1);
+			fog[(game.WIDTH/Tile.TILESIZE)/2][(game.HEIGHT/Tile.TILESIZE)/2+1].spreadOpacityCorner((game.WIDTH/Tile.TILESIZE)/2+1, (game.HEIGHT/Tile.TILESIZE)/2, 1, fog, map);
+			
+			fog[(game.WIDTH/Tile.TILESIZE)/2+1][(game.HEIGHT/Tile.TILESIZE)/2+1].setOpacity(1);
+			fog[(game.WIDTH/Tile.TILESIZE)/2+1][(game.HEIGHT/Tile.TILESIZE)/2+1].spreadOpacityCorner((game.WIDTH/Tile.TILESIZE)/2, (game.HEIGHT/Tile.TILESIZE)/2, 1, fog, map);
+			
 		}
 	}
 	
@@ -80,8 +98,8 @@ public class Handler {
 						&& map.getTile(x, y).getYCoord() <= (game.getHeight() - cam.getY())) {
 					map.getTile(x, y).render(g);
 					//System.out.println(((1-map.getTile(x, y).getOpacity())*255));
-					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
-					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
+//					g.setColor(new Color(0, 0, 0, (int)((1-map.getTile(x, y).getOpacity())*255)));
+//					g.fillRect(x*Tile.TILESIZE, y*Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
 					map.getTile(x, y).setOpacity(0);
 				}
 			}
@@ -101,6 +119,10 @@ public class Handler {
 		if(!Game.isDay){
 			for (int i = 0; i < robots.size(); i++) {
 				robots.get(i).render(g);
+			}
+			for(OpacityLayer[] p: fog){
+				for(OpacityLayer q: p)
+					q.render(g);
 			}
 		}
 		
