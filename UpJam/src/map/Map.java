@@ -39,13 +39,19 @@ public class Map {
 	final int wallLeft = (255 << 24) | (1 << 16) | (117 << 8) | (1);
 	// Right (a:255, r:255, g:3, b:3)
 	final int wallRight = (255 << 24) | (255 << 16) | (3 << 8) | (3);
+	// deskL (a:255, r:57, g:74, b:95)
+	final int deskL = (255 << 24) | (57 << 16) | (74 << 8) | (95);
+	// deskR (a:255, r:137, g:154, b:177)
+	final int deskR = (255 << 24) | (137 << 16) | (154 << 8) | (177);
+	// vomit (a:255, r:151, g:191, b:128)
+	final int vomit = (255 << 24) | (151 << 16) | (191 << 8) | (128);
 	
 	// end
 	
 	private Tile[][] map;//Represents the map in the format (x, y)
 	private int width;
 	private int height;
-	private String fileLocation = "resources/maps/bloodColourTestMapBig.bmp";
+	private String fileLocation = "resources/maps/map3.bmp";
 	
 	public Map(){
 		genMap();
@@ -113,6 +119,15 @@ public class Map {
 							break;
 						case cornerOutDownLeft:
 							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/wallCornerODL.png");
+							break;
+						case deskL:
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/deskL.png");
+							break;
+						case deskR:
+							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, "wall/deskR.png");
+							break;
+						case vomit:
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, "floor/vomit.png");
 							break;
 						default: 
 							map[x][y] = new TextureError(x*Tile.TILESIZE, y*Tile.TILESIZE);
