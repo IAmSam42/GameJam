@@ -79,24 +79,24 @@ public class Player extends Entities {
 		int y = getYCoord()/getSize();
 		if(map.getTile(x, y).isSolid())
 			y++;
-		switch(direction){
-		case UPLEFT:
-			map.getTile(x, y).calculateOpacityFront(map,getXCoord()/getSize()+1, y+1, 1);
-		case UP:
-			map.getTile(x, y).calculateOpacityFront(map,x, y+1, 1);
-		case UPRIGHT:
-			map.getTile(x, y).calculateOpacityFront(map,x-1, y+1, 1);
-		case RIGHT:
-			map.getTile(x, y).calculateOpacityFront(map,x-1, y, 1);
-		case DOWNRIGHT:
-			map.getTile(x, y).calculateOpacityFront(map,x-1, y-1, 1);
-		case DOWN:
-			map.getTile(x, y).calculateOpacityFront(map,x, y-1, 1);
-		case DOWNLEFT:
-			map.getTile(x, y).calculateOpacityFront(map,x+1, y-1, 1);
-		case LEFT:
-			map.getTile(x, y).calculateOpacityFront(map,x+1, y, 1);
-		}
+//		switch(direction){
+//		case UPLEFT:
+//			map.getTile(x, y).calculateOpacityFront(map,getXCoord()/getSize()+1, y+1, 1);
+//		case UP:
+//			map.getTile(x, y).calculateOpacityFront(map,x, y+1, 1);
+//		case UPRIGHT:
+//			map.getTile(x, y).calculateOpacityFront(map,x-1, y+1, 1);
+//		case RIGHT:
+//			map.getTile(x, y).calculateOpacityFront(map,x-1, y, 1);
+//		case DOWNRIGHT:
+//			map.getTile(x, y).calculateOpacityFront(map,x-1, y-1, 1);
+//		case DOWN:
+//			map.getTile(x, y).calculateOpacityFront(map,x, y-1, 1);
+//		case DOWNLEFT:
+//			map.getTile(x, y).calculateOpacityFront(map,x+1, y-1, 1);
+//		case LEFT:
+//			map.getTile(x, y).calculateOpacityFront(map,x+1, y, 1);
+//		}
 		
 		
 	}

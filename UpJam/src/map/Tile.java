@@ -31,44 +31,45 @@ public abstract class Tile extends GameObject
 	public synchronized void setOpacity(double op){
 		opacity = op;
 	}
-	
-	public void calculateOpacityFront(Map map, int prevX, int prevY, double inputOpacity){
-		int x = getXCoord()/TILESIZE;
-		int y = getYCoord()/TILESIZE;
-		opacity = inputOpacity;
-		double outputOpacity = inputOpacity *transparency;
-		double peripheryScalar = .7;
-		if(outputOpacity<.2)
-			return;
-		
-		map.getTile(2*x-prevX, 2*y-prevY).calculateOpacityFront(map, x, y, outputOpacity);
-		switch(x-prevX){
-		case 0:
-			if(prevY>y){
-				map.getTile(x-1, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			} else{
-				map.getTile(x+1, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			}
-		case 1:
-			switch(y-prevY){
-			case 0:
-				map.getTile(x-1, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			case 1:
-				map.getTile(x+1, y).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			case -1:
-				map.getTile(x, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			}
-		case -1:
-			switch(y-prevY){
-			case 0:
-				map.getTile(x+1, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			case 1:
-				map.getTile(x, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			case -1:
-				map.getTile(x+1, y).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
-			}
-		}
-	}
+//	
+//	public void calculateOpacityFront(Map map, int prevX, int prevY, double inputOpacity){
+//		int x = getXCoord()/TILESIZE;
+//		int y = getYCoord()/TILESIZE;
+//		opacity = inputOpacity;
+//		double outputOpacity = inputOpacity *transparency;
+//		double peripheryScalar = .7;
+//		if(outputOpacity<.2)
+//			return;
+//		if(2*x-prevX<0|2*x-prevX>map.getWidth()|2*y-prevY<0|2*y-prevY>map.getHeight())
+//			
+//		map.getTile(2*x-prevX, 2*y-prevY).calculateOpacityFront(map, x, y, outputOpacity);
+//		switch(x-prevX){
+//		case 0:
+//			if(prevY>y){
+//				map.getTile(x-1, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			} else{
+//				map.getTile(x+1, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			}
+//		case 1:
+//			switch(y-prevY){
+//			case 0:
+//				map.getTile(x-1, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			case 1:
+//				map.getTile(x+1, y).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			case -1:
+//				map.getTile(x, y+1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			}
+//		case -1:
+//			switch(y-prevY){
+//			case 0:
+//				map.getTile(x+1, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			case 1:
+//				map.getTile(x, y-1).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			case -1:
+//				map.getTile(x+1, y).calculateOpacityDiagonal(map, x,y,outputOpacity*peripheryScalar);
+//			}
+//		}
+//	}
 	public double getTransparancy(){
 		return transparency;
 	}
@@ -177,18 +178,19 @@ public abstract class Tile extends GameObject
 			}
 		}
 	*/
-
-	private void calculateOpacityDiagonal(Map map, int prevX, int prevY, double inputOpacity) {
-		int x = getXCoord()/TILESIZE;
-		int y = getYCoord()/TILESIZE;
-		opacity = inputOpacity;
-		double outputOpacity = inputOpacity *transparency;
-		if(outputOpacity<.2)
-			return;
-		
-		map.getTile(2*x-prevX, 2*y-prevY).calculateOpacityFront(map, x, y, outputOpacity);
-		
-	}	
+//
+//	private void calculateOpacityDiagonal(Map map, int prevX, int prevY, double inputOpacity) {
+//		int x = getXCoord()/TILESIZE;
+//		int y = getYCoord()/TILESIZE;
+//		opacity = inputOpacity;
+//		double outputOpacity = inputOpacity *transparency;
+//		if(outputOpacity<.2)
+//			return;
+//		try{
+//			map.getTile(2*x-prevX, 2*y-prevY).calculateOpacityFront(map, x, y, outputOpacity);
+//		}catch(ArrayIndexOutOfBoundsException e){}
+//		
+//	}	
 	
 	
 	

@@ -33,10 +33,12 @@ public class Handler {
 	
 	public void createMap(Map map){
 		this.map = map;
-		fog = new OpacityLayer[map.getWidth()][map.getHeight()];
-		for(int y = 0; y<map.getHeight();y++){
-			for(int x = 0; x<map.getWidth();x++){
-				fog[x][y] = new OpacityLayer(x*Tile.TILESIZE , y*Tile.TILESIZE , Tile.TILESIZE);
+		fog = new OpacityLayer[map.getWidth()*2][map.getHeight()*2];
+
+		for(int y = 0; y<map.getHeight()*2;y++){
+			for(int x = 0; x<map.getWidth()*2;x++){
+				System.out.println("Creating fog block "+x*(Tile.TILESIZE/2)+","+y*(Tile.TILESIZE/2));
+				fog[x][y] = new OpacityLayer(x*(Tile.TILESIZE/2) , y*(Tile.TILESIZE/2) , Tile.TILESIZE/2);
 			}
 		}
 		
@@ -48,7 +50,7 @@ public class Handler {
 	}
 
 	public void addRobot(Entities Robot){
-		robots.add(Robot);
+		//robots.add(Robot);
 	}
 	
 	public void addExtras(Entities trap) {
@@ -73,19 +75,27 @@ public class Handler {
 				for(OpacityLayer q: p)
 					q.setOpacity(0);
 			
-			int x = (player.getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE;
-			int y = (player.getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE;
+			int x = ((player.getXCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE)*2;
+			int y = ((player.getYCoord()+(Tile.TILESIZE/2))/Tile.TILESIZE)*2;
 			fog[x][y].setOpacity(1);
-			try{
-			fog[x-1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
-			fog[x-1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
-			fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
-			fog[x+1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
-			fog[x-1][y].spreadOpacityCentre(x, y, 1, fog, map);
-			fog[x][y+1].spreadOpacityCentre(x, y, 1, fog, map);
-			fog[x][y-1].spreadOpacityCentre(x, y, 1, fog, map);
-			fog[x+1][y].spreadOpacityCentre(x, y, 1, fog, map);
-			}catch(ArrayIndexOutOfBoundsException e){}
+			fog[x+1][y].setOpacity(1);
+			fog[x][y+1].setOpacity(1);
+			fog[x+1][y+1].setOpacity(1);	
+			
+//			try{
+				fog[x][y].spreadOpacityCorner(x+1, y+1, 1, fog, map);
+				fog[x+1][y].spreadOpacityCorner(x, y+1, 1, fog, map);
+				fog[x][y+1].spreadOpacityCorner(x+1, y, 1, fog, map);
+				fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
+//			fog[x-1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
+//			fog[x-1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
+//			fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
+//			fog[x+1][y-1].spreadOpacityCorner(x, y, 1, fog, map);
+//			fog[x-1][y].spreadOpacityCentre(x, y, 1, fog, map);
+//			fog[x][y+1].spreadOpacityCentre(x, y, 1, fog, map);
+//			fog[x][y-1].spreadOpacityCentre(x, y, 1, fog, map);
+//			fog[x+1][y].spreadOpacityCentre(x, y, 1, fog, map);
+//			}catch(ArrayIndexOutOfBoundsException e){}
 //			
 //			fog[(game.WIDTH/Tile.TILESIZE)][(game.HEIGHT/Tile.TILESIZE)].setOpacity(1);
 //			fog[(game.WIDTH/Tile.TILESIZE)][(game.HEIGHT/Tile.TILESIZE)].spreadOpacityCorner(((game.WIDTH/Tile.TILESIZE) )+1, ((game.HEIGHT/Tile.TILESIZE) )+1, 1, fog, map);
