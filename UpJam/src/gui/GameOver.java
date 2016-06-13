@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 public class GameOver {
 	JFrame frame;
 
-	public GameOver() {
+	public GameOver(int days) {
 		frame = new JFrame("28 Robots Later");
 		frame.setSize(500, 400);
 		frame.getContentPane().setLayout(null);
@@ -44,11 +44,17 @@ public class GameOver {
 		title.setForeground(blueColour);
 		frame.add(title, BorderLayout.NORTH);
 		
+		JLabel stats = new JLabel("You survived " + days + " nights", SwingConstants.CENTER);
+		stats.setBounds(50, 175, 400, 100);
+		stats.setFont(new Font("Press Start K", Font.PLAIN, 18));
+		stats.setForeground(blueColour);
+		frame.add(stats);
+		
 		JButton exitMain = new JButton("<html><center>Exit to Main Menu</center><html>");
 		exitMain.setFont(new Font("Press Start K", Font.PLAIN, 20));
 		exitMain.setForeground(Color.WHITE);
 		exitMain.setBackground(blueColour);
-		exitMain.setBounds(125, 225, 250, 75);
+		exitMain.setBounds(125, 255, 250, 75);
 		frame.add(exitMain);
 		
 		exitMain.addActionListener(new ActionListener() {
@@ -63,6 +69,6 @@ public class GameOver {
 	}
 	
 	public static void main(String[] args) {
-		new GameOver();
+		new GameOver(5);
 	}
 }

@@ -4,8 +4,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -24,6 +22,7 @@ public class Game extends Canvas implements Runnable{
 	public static boolean isDay = true;
 	public static boolean paused = false;
 	public static int timeTillDay = 60*120;
+	public static int noOfDays = 0;
 	private static final long serialVersionUID = 1L;
 	private boolean running = false;
 	private Thread thread;
@@ -122,7 +121,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	private int timeCounter = 0;
-	private int noOfDays = 0;
+
 	/**
 	 * Tick method
 	 */

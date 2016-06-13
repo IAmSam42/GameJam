@@ -11,7 +11,8 @@ import javax.swing.SwingConstants;
 
 public class Window extends JFrame{
 	private static final long serialVersionUID = 1L;
-
+	static JLabel instructions;
+	
 	public Window(int w, int h, String title, Game game){
 		Dimension dimention = new Dimension(w, h +85);
 		setMaximumSize(dimention);
@@ -40,5 +41,13 @@ public class Window extends JFrame{
 		game.start();
 		
 		//frame.setUndecorated(true);	
+	}
+	
+	public static void survive(){
+		instructions.setText("Survive");
+	}
+	
+	public static void setInstructions(){
+		instructions.setText("Press Enter to start the night");
 	}
 }
