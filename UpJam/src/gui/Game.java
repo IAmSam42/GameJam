@@ -157,7 +157,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	private int timeCounter = 0;
-	
+	private int noOfDays = 0;
 	/**
 	 * Tick method
 	 */
@@ -168,6 +168,10 @@ public class Game extends Canvas implements Runnable{
 			if(timeCounter > timeTillDay){
 				isDay = true;
 				timeCounter = 0;
+				noOfDays++;
+				MenuBar.updateTrapsLabel(Player.getTrapLimit() + 7 );
+				Player.setTrapLimit(Player.getTrapLimit() + 7 );
+				timeTillDay = (int) (timeTillDay*1.1);
 				handler.muteAllRobots(true);
 			}
 		}
