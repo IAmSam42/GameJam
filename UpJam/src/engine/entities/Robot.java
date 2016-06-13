@@ -36,8 +36,8 @@ public class Robot extends Entities
 		this.trapped = false;
 		this.extras = handler.getExtras();
 		this.scanValue = scanRate;
-		audio = new RobotAudio(this, player);
-		ai = new RobotIntelligence(map, this, player, handler);
+		audio = new RobotAudio(this, player, handler);
+		ai = new RobotIntelligence(map, this, player);
 	}
 	
 	public int getSight()
