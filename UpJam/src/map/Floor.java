@@ -28,6 +28,7 @@ public class Floor extends Tile {
 				pathText = null;
 		}
 		img = new ImageIcon(this.path + pathText).getImage(); 
+
 	}
 	
 

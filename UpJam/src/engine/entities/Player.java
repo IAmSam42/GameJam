@@ -57,7 +57,6 @@ public class Player extends Entities {
 		setXCoord(getXCoord() + velX);
 		setYCoord(getYCoord() + velY);
 		if(wPressed|dPressed|sPressed|aPressed){
-			System.out.println("IT WAS TRUEEE");
 			if(wPressed){
 				if(dPressed){
 					direction = Direction.UPRIGHT;
