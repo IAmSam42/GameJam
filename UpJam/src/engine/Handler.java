@@ -3,12 +3,14 @@ package engine;
 import engine.entities.Entities;
 import engine.entities.OpacityLayer;
 import engine.entities.Player;
+import engine.entities.Robot;
 import gui.Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 import javax.sound.sampled.Clip;
 
@@ -82,11 +84,10 @@ public class Handler {
 			fog[x][y+1].setOpacity(1);
 			fog[x+1][y+1].setOpacity(1);	
 			
-//			try{
-				fog[x][y].spreadOpacityCorner(x+1, y+1, 1, fog, map);
-				fog[x+1][y].spreadOpacityCorner(x, y+1, 1, fog, map);
-				fog[x][y+1].spreadOpacityCorner(x+1, y, 1, fog, map);
-				fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
+			fog[x][y].spreadOpacityCorner(x+1, y+1, 1, fog, map);
+			fog[x+1][y].spreadOpacityCorner(x, y+1, 1, fog, map);
+			fog[x][y+1].spreadOpacityCorner(x+1, y, 1, fog, map);
+			fog[x+1][y+1].spreadOpacityCorner(x, y, 1, fog, map);
 		}
 	}
 	
@@ -136,6 +137,14 @@ public class Handler {
 
 	public void addCamera(Camera cam) {
 		this.cam = cam;		
+	}
+
+	public void muteAllRobots(boolean mute) {
+		ListIterator<Entities> robotIterator = robots.listIterator();
+		while(robotIterator.hasNext()){
+			((Robot)robotIterator.next()).getRobotAudio().mute(mute);
+		}
+		
 	}
 
 

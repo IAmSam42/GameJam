@@ -97,7 +97,7 @@ public class Robot extends Entities
 		{
 			for(int i=0; i<this.velocity; i++)
 			{
-				ai.nextMove();
+				//ai.nextMove();
 			}
 			
 			if(scanValue-- == 0)
@@ -146,6 +146,10 @@ public class Robot extends Entities
 				g.drawImage(new ImageIcon("resources/sprites/bobFrontSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
 			}
 		}
+	}
+	
+	public RobotAudio getRobotAudio(){
+		return audio;
 	}
 
 }

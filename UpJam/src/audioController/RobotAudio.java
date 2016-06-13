@@ -6,18 +6,21 @@ import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import engine.entities.Player;
 import engine.entities.Robot;
+import gui.Game;
 
 public class RobotAudio {
 	Robot robot;
 	Player player;
-	FloatControl gainControl;
+	FloatControl volume;
 	Clip clip;
 	public RobotAudio(Robot robot, Player player) {
 		Random gen = new Random();
@@ -36,7 +39,9 @@ public class RobotAudio {
 				clip = AudioSystem.getClip();
 				clip.open(audioInputStream);
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
-				gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+				clip.start();
+				volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+				
 				
 
 		} catch (UnsupportedAudioFileException e) {
@@ -47,11 +52,33 @@ public class RobotAudio {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		mute(true);
 	}
+	
+
+	
+	public void mute(boolean isMuted){
+		BooleanControl muteControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+		muteControl.setValue(isMuted);
+	}
+	
+	public void setPan(double pan){
+		FloatControl pand = (FloatControl) clip.getControl(FloatControl.Type.PAN);
+		pand.setValue((float)pan);
+	}
+	
 	public void tick(){
-		if(robot.isTracking())
-			clip.start();
+		mute(false);
+		int distSqr = ((player.getXCoord()-robot.getXCoord())^2) + ((player.getYCoord()-robot.getYCoord())^2);
+		double distance = Math.sqrt((double)distSqr);
+		if(distance<320){
+			mute(true);
+			System.out.println("robot x coord: "+robot.getXCoord() + " player X coord: "+player.getXCoord());
+			setPan(robot.getXCoord()-player.getXCoord()/320);
+		}
+		
+
+		
 		
 	}
 }
