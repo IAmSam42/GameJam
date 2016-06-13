@@ -9,8 +9,10 @@ import javax.imageio.ImageIO;
 public class Map {
 	
 	//The values for each tile type are as follows:
-	// tile (a: 255, r: 255, g:255, b:255)
-	final int floor = (255 << 24) | (255 << 16) | (255 << 8) | (255);
+	// dayCarpet (a: 255, r: 255, g:255, b:255)
+	final int dayCarpet = (255 << 24) | (255 << 16) | (255 << 8) | (255);
+	// deadMan (a: 255, r: 255, g:255, b:255)
+	final int deadMan = (255 << 24) | (0 << 16) | (0 << 8) | (0);
 	// inUpLeft (a:255, r:61, g:255, b:2)
 	final int cornerInUpLeft = (255 << 24) | (61 << 16) | (255 << 8) | (2);
 	// inUpRight (a:255, r:247, g:255, b:3)
@@ -41,7 +43,7 @@ public class Map {
 	private Tile[][] map;//Represents the map in the format (x, y)
 	private int width;
 	private int height;
-	private String fileLocation = "resources/maps/colourTestMapBig.bmp";
+	private String fileLocation = "resources/maps/bloodColourTestMapBig.bmp";
 	
 	public Map(){
 		genMap();
@@ -65,8 +67,11 @@ public class Map {
 					int rgbVal = mapimage.getRGB(x, y);
 					switch(rgbVal) {
 						
-						case floor:
-							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE);
+						case dayCarpet:
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, dayCarpet);
+							break;
+						case deadMan:
+							map[x][y] = new Floor(x*Tile.TILESIZE, y*Tile.TILESIZE, deadMan);
 							break;
 						case wallUp:
 							map[x][y] = new Wall(x*Tile.TILESIZE, y*Tile.TILESIZE, wallUp);

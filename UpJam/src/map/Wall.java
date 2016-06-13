@@ -57,7 +57,6 @@ public class Wall extends Tile {
 		default:
 			pathText = null;
 		}
-		System.out.println(pathText);
 		img = new ImageIcon(this.path + pathText).getImage();
 	}
 	

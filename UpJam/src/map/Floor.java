@@ -9,13 +9,25 @@ import javax.swing.ImageIcon;
 
 public class Floor extends Tile {
 
-	private Image dayImg = new ImageIcon(this.path + "floor/dayCarpet.png").getImage(); 
-	private Image nightImg = new ImageIcon(this.path + "floor/nightCarpet.png").getImage(); 
+	private Image img; 
 	
-	public Floor(int xCoord, int yCoord) {
+	public Floor(int xCoord, int yCoord, int floorType) {
 		super(xCoord, yCoord);
 		this.setSolid(false);
 		transparency = .7;
+		String pathText;
+		switch(floorType) {
+		
+			case (255 << 24) | (255 << 16) | (255 << 8) | (255):
+				pathText = "floor/dayCarpet.png";
+				break;
+			case (255 << 24) | (0 << 16) | (0 << 8) | (0):
+				pathText = "floor/deadMan.png";
+				break;
+			default:
+				pathText = null;
+		}
+		img = new ImageIcon(this.path + pathText).getImage(); 
 	}
 	
 
@@ -25,11 +37,7 @@ public class Floor extends Tile {
 	
 	@Override
 	public void render(Graphics g) {
-		if(Game.isDay){
-			g.drawImage(dayImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
-		}else{
-			g.drawImage(nightImg, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
-		}
+		g.drawImage(img, this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE, null);
 	}
 
 	
