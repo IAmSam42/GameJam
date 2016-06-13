@@ -12,6 +12,7 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import engine.Handler;
 import engine.entities.Player;
 import engine.entities.Robot;
 
@@ -19,8 +20,10 @@ public class RobotAudio {
 	Robot robot;
 	Player player;
 	Clip clip;
+	Handler handler;
 	
-	public RobotAudio(Robot robot, Player player) {
+	public RobotAudio(Robot robot, Player player, Handler handler) {
+		this.handler = handler;
 		Random gen = new Random();
 		String fileURL = "";
 		if(gen.nextFloat()<.5){
