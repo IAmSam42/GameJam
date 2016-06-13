@@ -75,6 +75,25 @@ public class Credits {
 		s.setBounds(295, 396, 64, 64);
 		panel.add(s, new Integer(1));
 		
+		ImageIcon helena = new ImageIcon("resources/Sprites/buttbuttSprite.png");
+		JLabel h = new JLabel();
+		h.setIcon(helena);
+		h.setBounds(355, 396, 64, 64);
+		panel.add(h, new Integer(1));
+		
+		ImageIcon durdy = new ImageIcon("resources/Sprites/stabbySprite.png");
+		JLabel d = new JLabel();
+		d.setIcon(durdy);
+		d.setBounds(415, 396, 64, 64);
+		panel.add(d, new Integer(1));
+		
+		ImageIcon bric = new ImageIcon("resources/Sprites/bricSprite.png");
+		JLabel b = new JLabel();
+		b.setIcon(bric);
+		b.setBounds(475, 396, 64, 64);
+		panel.add(b, new Integer(1));
+		
+		
 		frame.setVisible(true);
 	}
 

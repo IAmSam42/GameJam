@@ -35,7 +35,7 @@ public class Window extends JFrame{
 		instructions.setForeground(new Color(27, 14, 89));
 		add(instructions, BorderLayout.SOUTH);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle(title);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -48,7 +48,7 @@ public class Window extends JFrame{
 	}
 	
 	public static void close(){
-		Game.running = false;
+		//Game.running = false;
 		acc.dispose();
 		
 	}
