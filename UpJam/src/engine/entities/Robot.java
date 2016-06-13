@@ -122,7 +122,7 @@ public class Robot extends Entities
 	@Override
 	public void render(Graphics g) {
 		if(isTrapped()){
-			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.png").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
+			g.drawImage(new ImageIcon("resources/sprites/bobMagnetSprite.gif").getImage() , this.getXCoord(), this.getYCoord(), Tile.TILESIZE, Tile.TILESIZE,null);
 		}
 		else if(this.direction == Direction.UP)
 		{
