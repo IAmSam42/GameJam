@@ -30,6 +30,7 @@ public class Game extends Canvas implements Runnable{
 	private Camera cam;
 	
 	public JFrame frame = new JFrame();
+	public static JFrame window;
 	public int HEIGHT;
 	public int WIDTH;
 
@@ -188,15 +189,5 @@ public class Game extends Canvas implements Runnable{
 	public int getWidth(){
 		return WIDTH;
 	}
-	
 
-	/**
-	 * Main method
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		int width = 840;
-		int height = (width/16)*9;
-		new Window(width, height,"Up Town Jam" ,new Game(width, height));
-	}
 }
