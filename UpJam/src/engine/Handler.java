@@ -1,5 +1,6 @@
 package engine;
 
+import engine.ai.TilePosition;
 import engine.entities.Entities;
 import engine.entities.OpacityLayer;
 import engine.entities.Player;
@@ -9,6 +10,7 @@ import gui.Game;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Random;
 
 import javax.sound.sampled.Clip;
 
@@ -143,16 +145,30 @@ public class Handler {
 	}
 
 	public void muteAllRobots(boolean mute) {
-		ListIterator<Entities> robotIterator = robots.listIterator();
-		while(robotIterator.hasNext()){
-			((Robot)robotIterator.next()).getRobotAudio().mute(mute);
+		for(Entities robot : robots)
+		{
+			((Robot)robot).mute();
 		}
-		
 	}
 
 	public void genRobot() {
 		int c = Game.noOfDays;
 		
+		robots.clear();
+		
+		Random generator = new Random();
+		
+		for(int i = 0; i < 5+c; i++)
+		{
+			int xCoord = generator.nextInt(map.getWidth() * Tile.TILESIZE);
+			int yCoord = generator.nextInt(map.getHeight() * Tile.TILESIZE);
+			
+			if(!map.getTile(xCoord/32, yCoord/32).isSolid())
+			{
+				Robot robot = new Robot(xCoord, yCoord, Tile.TILESIZE, map, player, this);
+				this.addRobot(robot);
+			}
+		}
 	}
 
 

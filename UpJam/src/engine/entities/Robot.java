@@ -151,5 +151,10 @@ public class Robot extends Entities
 	public RobotAudio getRobotAudio(){
 		return audio;
 	}
+	
+	public void mute()
+	{
+		audio.stop();
+	}
 
 }

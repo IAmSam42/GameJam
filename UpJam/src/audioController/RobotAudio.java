@@ -57,6 +57,11 @@ public class RobotAudio {
 	}
 	
 
+	public void stop()
+	{
+		clip.stop();
+	}
+	
 	
 	public void mute(boolean isMuted){
 		BooleanControl muteControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
