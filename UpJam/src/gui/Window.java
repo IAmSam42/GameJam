@@ -27,7 +27,7 @@ public class Window extends JFrame{
 		game.setBounds(0, 64, w, h);
 		add(game, BorderLayout.CENTER);
 		
-		JLabel instructions = new JLabel("Press Enter to start the night", SwingConstants.CENTER);
+		instructions = new JLabel("Press Enter to start the night", SwingConstants.CENTER);
 		instructions.setBounds(0, h + 10, w, 45);
 		instructions.setFont(new Font("Press Start K", Font.PLAIN, 12));
 		instructions.setForeground(new Color(27, 14, 89));
