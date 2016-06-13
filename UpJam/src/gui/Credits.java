@@ -8,6 +8,7 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,6 +61,14 @@ public class Credits {
 		credit.setFont(new Font("Press Start K", Font.PLAIN, 25));
 		credit.setForeground(blueColour);
 		panel.add(credit, BorderLayout.CENTER);
+		
+		//Images
+		ImageIcon corridor = new ImageIcon("resources/Sprites/tomSprite.png");
+		JLabel c = new JLabel();
+		c.setIcon(corridor);
+		c.setBounds(215, 396, 64, 64);
+		panel.add(c, new Integer(1));
+		
 		frame.setVisible(true);
 	}
 

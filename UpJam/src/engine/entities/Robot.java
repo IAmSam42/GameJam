@@ -31,7 +31,7 @@ public class Robot extends Entities
 	public Robot(int xCoord, int yCoord, int size, Map map, Player player, LinkedList<Entities> extras) 
 	{
 		super(xCoord, yCoord, size);
-		this.sight = 10;
+		this.sight = 4;
 		this.velocity = 1;
 		this.trapped = false;
 		this.extras = extras;
@@ -97,7 +97,7 @@ public class Robot extends Entities
 		{
 			for(int i=0; i<this.velocity; i++)
 			{
-				//ai.nextMove();
+				ai.nextMove();
 			}
 			
 			if(scanValue-- == 0)

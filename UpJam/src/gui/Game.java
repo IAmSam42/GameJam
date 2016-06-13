@@ -52,47 +52,12 @@ public class Game extends Canvas implements Runnable{
 
 		Player player = new Player(32,32, Tile.TILESIZE, handler, map);
 
-		//handler.addRobot(new Robot(288, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(288, 224, Tile.TILESIZE, map, player, handler.getExtras()));
 		handler.addRobot(new Robot(1000, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-//		handler.addRobot(new Robot(100, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-//		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-//		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-//		handler.addRobot(new Robot(345, 224, Tile.TILESIZE, map, player, handler.getExtras()));
-//		handler.addRobot(new Robot(809, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(100, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(550, 224, Tile.TILESIZE, map, player, handler.getExtras()));
+		handler.addRobot(new Robot(600, 224, Tile.TILESIZE, map, player, handler.getExtras()));
 		
-
-		this.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("MOUSE PRESSED AT BLOCK: ("+(int)(e.getX()/32)+", "+(int)(e.getY()/32)+")");
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		this.addKeyListener(new KeyHandler(player));
 		this.setFocusable(true);
 
